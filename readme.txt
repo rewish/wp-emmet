@@ -7,13 +7,13 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This is an awesome `[Emmet](http://emmet.io/)` plugin!
+Emmet (ex-Zen Coding) for WordPress.
 
 == Description ==
 
-When you post an article, you can use the `Emmet` in the post editor.
+When you post an article, you can use the [Emmet](http://emmet.io/) in the post editor.
 
-Thanks for [Emmet](http://emmet.io/).
+[Fork me on GitHub](https://github.com/rewish/wp-emmet) :)
 
 == Installation ==
 

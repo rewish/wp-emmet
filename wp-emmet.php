@@ -2,7 +2,7 @@
 /*
 Plugin Name: WP Emmet
 Plugin URI: https://github.com/rewish/wp-emmet
-Description: This is an awesome <a href="http://emmet.io/">Emmet</a> plugin!
+Description: Emmet (ex-Zen Coding) for WordPress.
 Version: 0.1
 Author: rewish
 Author URI: https://github.com/rewish

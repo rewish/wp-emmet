@@ -22,14 +22,14 @@ class WP_Emmet_Options {
 	 */
 	public function __construct($name = WP_EMMET_DOMAIN) {
 		$this->name = $name;
-		$this->setup();
+		$this->setupOptions();
 		$this->addAdminMenu();
 	}
 
 	/**
 	 * Setup options
 	 */
-	public function setup() {
+	public function setupOptions() {
 		$this->options = array_merge(array(
 			'variables' => array(
 				'indentation' => "\t"
@@ -69,7 +69,7 @@ class WP_Emmet_Options {
 				'Select Previous Item' => 'Meta+,',
 				'Reflect CSS Value'    => 'Meta+Shift+B'
 			)
-		), get_option($this->name));
+		), get_option($this->name, array()));
 	}
 
 	/**

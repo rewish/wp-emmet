@@ -1,7 +1,7 @@
 === Plugin Name ===
 Contributors: rewish
 Tags: emmet, zen-coding, editor, post, plugin, coding
-Requires at least: 3.5.0
+Requires at least: 3.4.2
 Tested up to: 3.5.1
 Stable tag: trunk
 License: GPLv2 or later
@@ -11,7 +11,7 @@ Emmet (ex-Zen Coding) for WordPress.
 
 == Description ==
 
-When you post an article, you can use the [Emmet](http://emmet.io/) in the post editor.
+You can use the [Emmet](http://emmet.io/) in post editor.
 
 [Fork me on GitHub](https://github.com/rewish/wp-emmet) :)
 

@@ -27,5 +27,9 @@ e.g.
 
 == Changelog ==
 
+= 0.1.1 =
+* Update emmet.js
+* Fix a bug that occurs when Options is not set
+
 = 0.1 =
 * Initial release

@@ -45,12 +45,23 @@ class WP_Emmet {
 	}
 
 	/**
-	 * Get the Emmet URL
+	 * Is load underscore
 	 *
+	 * @return boolean
+	 */
+	public function isLoadUnderscore() {
+		global $editing;
+		return !$editing || 3.5 > floatval(get_bloginfo('version'));
+	}
+
+	/**
+	 * Get JavaScript URL
+	 *
+	 * @param string $name File name
 	 * @return string
 	 */
-	public function getEmmetURL() {
-		return plugin_dir_url(WP_EMMET_FILE) . 'js/emmet.js';
+	public function getJavaScriptURL($name) {
+		return plugin_dir_url(WP_EMMET_FILE) . 'js/' . $name;
 	}
 
 	/**

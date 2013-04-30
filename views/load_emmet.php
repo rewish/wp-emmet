@@ -1,4 +1,7 @@
-<script src="<?php echo $this->getEmmetURL(); ?>"></script>
+<?php if ($this->isLoadUnderscore()): ?>
+<script src="<?php echo $this->getJavaScriptURL('underscore.js'); ?>"></script>
+<?php endif; ?>
+<script src="<?php echo $this->getJavaScriptURL('emmet.js'); ?>"></script>
 <script>
 (function(emmet) {
 	var textarea = emmet.require('textarea');

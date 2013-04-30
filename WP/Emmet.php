@@ -33,35 +33,32 @@ class WP_Emmet {
 	 * Setup actions
 	 */
 	public function setupActions() {
-		add_action('admin_print_footer_scripts', array($this, 'loadEmmet'));
+		add_action('admin_enqueue_scripts', array($this, 'enqueueEmmet'));
+		add_action('admin_print_footer_scripts', array($this, 'applyEmmet'));
 	}
 
 	/**
-	 * Load the Emmet
+	 * Enqueue the Emmet
 	 */
-	public function loadEmmet() {
+	public function enqueueEmmet() {
+		wp_enqueue_script(WP_EMMET_DOMAIN, $this->getEmmetURL(), array('underscore'), false, true);
+	}
+
+	/**
+	 * Apply the Emmet
+	 */
+	public function applyEmmet() {
 		$shortcuts = $this->Options->get('shortcuts');
-		require_once WP_EMMET_VIEW_DIR . DIRECTORY_SEPARATOR . 'load_emmet.php';
+		require_once WP_EMMET_VIEW_DIR . DIRECTORY_SEPARATOR . 'apply_emmet.php';
 	}
 
 	/**
-	 * Is load underscore
+	 * Get the Emmet URL
 	 *
-	 * @return boolean
-	 */
-	public function isLoadUnderscore() {
-		global $editing;
-		return !$editing || 3.5 > floatval(get_bloginfo('version'));
-	}
-
-	/**
-	 * Get JavaScript URL
-	 *
-	 * @param string $name File name
 	 * @return string
 	 */
-	public function getJavaScriptURL($name) {
-		return plugin_dir_url(WP_EMMET_FILE) . 'js/' . $name;
+	public function getEmmetURL() {
+		return plugin_dir_url(WP_EMMET_FILE) . 'js/emmet.js';
 	}
 
 	/**

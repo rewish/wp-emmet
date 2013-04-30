@@ -27,6 +27,9 @@ e.g.
 
 == Changelog ==
 
+= 0.1.2 =
+* Fix "Add Media" button doesn't works
+
 = 0.1.1 =
 * Update emmet.js
 * Fix a bug that occurs when Options is not set

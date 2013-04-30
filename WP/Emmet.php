@@ -50,8 +50,7 @@ class WP_Emmet {
 	 * @return string
 	 */
 	public function getEmmetURL() {
-		$emmet = WP_DEBUG ? 'emmet.min.js' : 'emmet.js';
-		return plugin_dir_url(WP_EMMET_FILE) . "js/$emmet";
+		return plugin_dir_url(WP_EMMET_FILE) . 'js/emmet.js';
 	}
 
 	/**

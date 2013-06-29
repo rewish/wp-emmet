@@ -46,12 +46,12 @@
 					<th><?php _e('Appearance'); ?></th>
 					<td>
 						<?php echo $form->checkBoolean('editor.lineNumbers'); ?>
-						<?php echo $form->label('editor.lineNumbers', __('Show line numbers')); ?>
+						<?php echo $form->label('editor.lineNumbers', __('Show line numbers', $domain)); ?>
 
 						<br>
 
 						<?php echo $form->checkBoolean('editor.lineWrapping'); ?>
-						<?php echo $form->label('editor.lineWrapping', __('Line wrapping')); ?>
+						<?php echo $form->label('editor.lineWrapping', __('Line wrapping', $domain)); ?>
 					</td>
 				</tr>
 			</tbody>

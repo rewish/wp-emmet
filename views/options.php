@@ -109,13 +109,6 @@ jQuery(function($) {
 			$shortcuts.hide();
 		}
 	});
-
-	$shortcuts.find('input[type="text"]').each(function() {
-		var $self = $(this),
-			$kbd = $(document.createElement('kbd'));
-		$kbd.text(shortcut.format($self.val()));
-		$self.after($kbd);
-	});
 });
 </script>
 

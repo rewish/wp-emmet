@@ -73,6 +73,24 @@ class WP_Emmet_Options {
 	}
 
 	/**
+	 * Set option
+	 *
+	 * @param string $key
+	 * @param mixed $value
+	 */
+	public function set($key, $value) {
+		$k = explode('.', $key);
+		$o =& $this->options;
+
+		switch (count($k)) {
+			case 1: $o[$k[0]] = $value; break;
+			case 2: $o[$k[0]][$k[1]] = $value; break;
+		}
+
+		update_option($this->name, $this->options);
+	}
+
+	/**
 	 * Get option
 	 *
 	 * @param string $key

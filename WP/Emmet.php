@@ -5,6 +5,7 @@
 require_once dirname(__FILE__) . '/Emmet/Exception.php';
 require_once dirname(__FILE__) . '/Emmet/Lang.php';
 require_once dirname(__FILE__) . '/Emmet/Options.php';
+require_once dirname(__FILE__) . '/Emmet/Migration.php';
 require_once dirname(__FILE__) . '/Emmet/CodeMirror.php';
 
 class WP_Emmet {
@@ -77,7 +78,15 @@ class WP_Emmet {
 		$this->Lang = new WP_Emmet_Lang();
 		$this->Options = new WP_Emmet_Options();
 		$this->CodeMirror = new WP_Emmet_CodeMirror();
+		$this->migrate();
 		$this->setupActions();
+	}
+
+	/**
+	 * Migrate
+	 */
+	public function migrate() {
+		WP_Emmet_Migration::migrate($this);
 	}
 
 	/**
@@ -115,12 +124,16 @@ class WP_Emmet {
 	}
 
 	/**
-	 * Get option
+	 * Get|Set option
 	 *
 	 * @param string $key
+	 * @param mixed $value Optional
 	 * @return mixed
 	 */
-	public function getOption($key) {
+	public function option($key = null, $value = null) {
+		if (count(func_get_args()) === 2) {
+			return $this->Options->set($key, $value);
+		}
 		return $this->Options->get($key);
 	}
 }

@@ -5,6 +5,7 @@
 require_once dirname(__FILE__) . '/Emmet/Exception.php';
 require_once dirname(__FILE__) . '/Emmet/Lang.php';
 require_once dirname(__FILE__) . '/Emmet/Options.php';
+require_once dirname(__FILE__) . '/Emmet/FormHelper.php';
 require_once dirname(__FILE__) . '/Emmet/Migration.php';
 require_once dirname(__FILE__) . '/Emmet/CodeMirror.php';
 
@@ -25,7 +26,7 @@ class WP_Emmet {
 	 * CodeMirror instance
 	 * @var WP_Emmet_CodeMirror
 	 */
-	protected $CodeMirror;
+	public $CodeMirror;
 
 	/**
 	 * Get the Asset URL
@@ -103,8 +104,8 @@ class WP_Emmet {
 	 */
 	public function printStyles() {
 		$this->CodeMirror->enqueueStyle();
-		$this->CodeMirror->enqueueStyle('twilight');
-		wp_enqueue_style(WP_EMMET_DOMAIN, self::assetURL('css/editor.css'));
+		$this->CodeMirror->enqueueStyle($this->option('editor.theme'));
+		wp_enqueue_style(WP_EMMET_DOMAIN, self::assetURL('css/wp-emmet.css'));
 	}
 
 	/**

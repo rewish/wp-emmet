@@ -21,7 +21,7 @@ class WP_Emmet_Migration {
 		$migrated = false;
 
 		foreach ($versions as $info) {
-			if ($currentVersion <= $info['version']) {
+			if ($currentVersion < $info['version']) {
 				require_once $info['path'];
 				call_user_func(array($info['class'], 'migrate'), $context);
 				$migrated = true;

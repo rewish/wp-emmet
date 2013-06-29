@@ -1,3 +1,13 @@
+#wp-emmet-editor-tabSize,
+#wp-emmet-editor-indentUnit {
+  width: 5em;
+}
+
+#template .CodeMirror,
+#template .CodeMirror div {
+  margin-right: 0
+}
+
 .CodeMirror {
   height: 300px;
   font-family: Ricty, Monaco, "Hiragino Kaku Gothic Pro", "MS Gothic", sans-serif;

@@ -22,26 +22,29 @@ class WP_Emmet_Options {
 	 */
 	public function __construct($name = WP_EMMET_DOMAIN) {
 		$this->name = $name;
-		$this->setupOptions();
+		$this->options = $this->load();
 		$this->addAdminMenu();
 	}
 
 	/**
-	 * Setup options
+	 * Load options
 	 */
-	public function setupOptions() {
-		$this->options = array_merge(array(
-			'variables' => array(
-				'indentation' => "\t"
+	public function load() {
+		return array_merge(array(
+			'editor' => array(
+				'profile' => 'html',
+				'theme' => 'default',
+
+				'indentWithTabs' => '1',
+				'indentUnit' => 2,
+				'tabSize' => 4,
+				'smartIndent' => '1',
+
+				'lineWrapping' => '1',
+				'lineNumbers' => '1'
 			),
 
-			'options' => array(
-				'profile' => 'xhtml',
-				'syntax' => 'html',
-				'use_tab' => true,
-				'pretty_break' => true
-			),
-
+			'expand_with_tab' => '1',
 			'override_shortcuts' => '',
 
 			'shortcuts' => array(
@@ -96,12 +99,14 @@ class WP_Emmet_Options {
 	 * @param string $key
 	 */
 	public function get($key = null) {
+		$options = $this->normalizedOptions();
+
 		if (empty($key)) {
-			return $this->options;
+			return $options;
 		}
 
 		$keys = explode('.', $key);
-		$option = $this->options;
+		$option = $options;
 
 		do {
 			$key = array_shift($keys);
@@ -120,7 +125,7 @@ class WP_Emmet_Options {
 	 *
 	 * @param string $key
 	 */
-	public function toJSON($key) {
+	public function toJSON($key = null) {
 		return json_encode($this->get($key));
 	}
 
@@ -142,7 +147,35 @@ class WP_Emmet_Options {
 	 * Page options
 	 */
 	public function pageOptions() {
+		global $wp_emmet;
 		$domain = WP_EMMET_DOMAIN;
+		$form = new WP_Emmet_FormHelper($this->name, $this->options);
+		$themes = $wp_emmet->CodeMirror->themes;
 		require_once WP_EMMET_VIEW_DIR . DIRECTORY_SEPARATOR . 'options.php';
+	}
+
+	/**
+	 * Normalized options
+	 *
+	 * @return array
+	 */
+	public function normalizedOptions() {
+		$options = $this->options;
+
+		// Boolean
+		foreach (array('indentWithTabs', 'smartIndent', 'lineWrapping' , 'lineNumbers') as $key) {
+			$options['editor'][$key] = $options['editor'][$key] === '1';
+		}
+
+		// Integer
+		foreach (array('indentUnit', 'tabSize') as $key) {
+			$options['editor'][$key] = (int)$options['editor'][$key];
+		}
+
+		if ($options['editor']['indentWithTabs']) {
+			$options['editor']['indentUnit'] = $options['editor']['tabSize'];
+		}
+
+		return $options;
 	}
 }

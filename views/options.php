@@ -9,44 +9,49 @@
 			<input type="hidden" name="page_options" value="<?php echo $this->name; ?>">
 		</div>
 
-		<h3><?php _e('Options', $domain); ?></h3>
+		<h3><?php _e('Editor', $domain); ?></h3>
 		<table class="form-table">
 			<tbody>
 				<tr>
 					<th><?php _e('Profile', $domain); ?></th>
-					<td>
-						<select name="<?php echo $this->name; ?>[options][profile]">
-<?php					foreach (array('xhtml', 'html', 'xml', 'plain', 'line') as $profile): ?>
-							<option<?php if ($this->options['options']['profile'] === $profile) echo ' selected="selected"'; ?>><?php echo $profile; ?></option>
-<?php					endforeach; ?>
-						</select>
+					<td><?php echo $form->select('editor.profile', 'xhtml,html,xml,plain,line'); ?></td>
 				</tr>
 				<tr>
-					<th><?php _e('Use tab key', $domain); ?></th>
+					<th><?php _e('Theme', $domain); ?></th>
+					<td><?php echo $form->select('editor.theme', $themes); ?></td>
+				</tr>
+				<tr>
+					<th><?php _e('Tabs and Indents', $domain); ?></th>
 					<td>
-						<input type="hidden" name="<?php echo $this->name; ?>[options][use_tab]" value="0">
-						<input id="<?php echo $this->name; ?>_op_use_tab" type="checkbox" name="<?php echo $this->name; ?>[options][use_tab]" value="1"<?php if ($this->options['options']['use_tab']) echo ' checked="checked"'; ?>>
-						<label for="<?php echo $this->name; ?>_op_use_tab"><?php _e('Use', $domain); ?></label>
+						<?php echo $form->checkBoolean('editor.indentWithTabs'); ?>
+						<?php echo $form->label('editor.indentWithTabs', __('Use tab character', $domain)); ?>
+
+						<br>
+
+						<?php echo $form->checkBoolean('editor.smartIndent'); ?>
+						<?php echo $form->label('editor.smartIndent', __('Smart indent', $domain)); ?>
+
+						<br>
+
+						<?php echo $form->label('editor.tabSize', __('Tab size', $domain)); ?>
+						<?php echo $form->numberField('editor.tabSize'); ?>
+
+						<br>
+
+						<?php echo $form->label('editor.indentUnit', __('Indent unit', $domain)); ?>
+						<?php echo $form->numberField('editor.indentUnit'); ?>
 					</td>
 				</tr>
 				<tr>
-					<th><?php _e('Auto indent', $domain); ?></th>
+					<th><?php _e('Appearance'); ?></th>
 					<td>
-						<input type="hidden" name="<?php echo $this->name; ?>[options][pretty_break]" value="0">
-						<input id="<?php echo $this->name; ?>_op_pretty_break" type="checkbox" name="<?php echo $this->name; ?>[options][pretty_break]" value="1"<?php if ($this->options['options']['pretty_break']) echo ' checked="checked"'; ?>>
-						<label for="<?php echo $this->name; ?>_op_pretty_break"><?php _e('Use', $domain); ?></label>
-					</td>
-				</tr>
-				<tr>
-					<th><?php _e('Indent character', $domain); ?></th>
-					<td>
-<?php				if ($this->options['variables']['indentation'] === "\t"): ?>
-						<input type="text" id="<?php echo $this->name; ?>_var_indentation_text" name="<?php echo $this->name; ?>[variables][indentation]" value="" disabled="disabled"  class="small-text">
-<?php				else: ?>
-						<input type="text" id="<?php echo $this->name; ?>_var_indentation_text" name="<?php echo $this->name; ?>[variables][indentation]" value="<?php echo $this->options['variables']['indentation']; ?>" class="small-text">
-<?php				endif; ?>
-						<input type="checkbox" id="<?php echo $this->name; ?>_var_indentation" name="<?php echo $this->name; ?>[variables][indentation]" value="<?php echo "\t"; ?>"<?php if ($this->options['variables']['indentation'] === "\t") echo ' checked="checked"'; ?>>
-						<label for="<?php echo $this->name; ?>_var_indentation"><?php _e('Use hard tabs', $domain); ?></label>
+						<?php echo $form->checkBoolean('editor.lineNumbers'); ?>
+						<?php echo $form->label('editor.lineNumbers', __('Show line numbers')); ?>
+
+						<br>
+
+						<?php echo $form->checkBoolean('editor.lineWrapping'); ?>
+						<?php echo $form->label('editor.lineWrapping', __('Line wrapping')); ?>
 					</td>
 				</tr>
 			</tbody>

@@ -1,0 +1,159 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Emmet\n"
+"POT-Creation-Date: 2013-06-30 07:52+0900\n"
+"PO-Revision-Date: 2013-06-30 07:53+0900\n"
+"Last-Translator: rewish <rewish.org@gmail.com>\n"
+"Language-Team: \n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.5\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: views/options.php:12
+msgid "Editor"
+msgstr ""
+
+#: views/options.php:16
+msgid "Profile"
+msgstr ""
+
+#: views/options.php:20
+msgid "Theme"
+msgstr ""
+
+#: views/options.php:24
+msgid "Tabs and Indents"
+msgstr ""
+
+#: views/options.php:27
+msgid "Use tab character"
+msgstr ""
+
+#: views/options.php:32
+msgid "Smart indent"
+msgstr ""
+
+#: views/options.php:36
+msgid "Tab size"
+msgstr ""
+
+#: views/options.php:41
+msgid "Indent unit"
+msgstr ""
+
+#: views/options.php:46
+msgid "Appearance"
+msgstr ""
+
+#: views/options.php:49
+msgid "Show line numbers"
+msgstr ""
+
+#: views/options.php:54
+msgid "Line wrapping"
+msgstr ""
+
+#: views/options.php:60
+msgid "Shortcuts"
+msgstr ""
+
+#: views/options.php:63
+msgid "Override shortcuts"
+msgstr ""
+
+#: views/options.php:77
+msgid "Save option"
+msgstr ""
+
+#: views/options.php:81
+msgid "Test the Emmet"
+msgstr ""
+
+#: views/options.php:122
+msgid "Expand Abbreviation"
+msgstr ""
+
+#: views/options.php:123
+msgid "Match Pair Outward"
+msgstr ""
+
+#: views/options.php:124
+msgid "Match Pair Inward"
+msgstr ""
+
+#: views/options.php:125
+msgid "Wrap with Abbreviation"
+msgstr ""
+
+#: views/options.php:126
+msgid "Next Edit Point"
+msgstr ""
+
+#: views/options.php:127
+msgid "Prev Edit Point"
+msgstr ""
+
+#: views/options.php:128
+msgid "Select Line"
+msgstr ""
+
+#: views/options.php:129
+msgid "Merge Lines"
+msgstr ""
+
+#: views/options.php:130
+msgid "Toggle Comment"
+msgstr ""
+
+#: views/options.php:131
+msgid "Split/Join Tag"
+msgstr ""
+
+#: views/options.php:132
+msgid "Remove Tag"
+msgstr ""
+
+#: views/options.php:133
+msgid "Evaluate Math Expression"
+msgstr ""
+
+#: views/options.php:134
+msgid "Increment number by 1"
+msgstr ""
+
+#: views/options.php:135
+msgid "Decrement number by 1"
+msgstr ""
+
+#: views/options.php:136
+msgid "Increment number by 0.1"
+msgstr ""
+
+#: views/options.php:137
+msgid "Decrement number by 0.1"
+msgstr ""
+
+#: views/options.php:138
+msgid "Increment number by 10"
+msgstr ""
+
+#: views/options.php:139
+msgid "Decrement number by 10"
+msgstr ""
+
+#: views/options.php:140
+msgid "Select Next Item"
+msgstr ""
+
+#: views/options.php:141
+msgid "Select Previous Item"
+msgstr ""
+
+#: views/options.php:142
+msgid "Reflect CSS Value"
+msgstr ""

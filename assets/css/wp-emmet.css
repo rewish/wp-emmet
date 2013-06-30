@@ -5,11 +5,10 @@
 
 #template .CodeMirror,
 #template .CodeMirror div {
-  margin-right: 0
+  margin-right: 20px;
 }
 
 .CodeMirror {
-  height: 300px;
   font-family: Ricty, monospace, "Hiragino Kaku Gothic Pro", sans-serif;
   font-size: 16px;
   line-height: 1.3;

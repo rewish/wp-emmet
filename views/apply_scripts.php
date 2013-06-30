@@ -4,6 +4,13 @@
 		keymap = {
 			Tab: 'expand_abbreviation_with_tab',
 			Enter: 'insert_formatted_line_break_only'
+		},
+		mimeTypes = {
+			php: 'application/x-httpd-php',
+			html: 'text/html',
+			css: 'text/css',
+			js: 'text/javascript',
+			json: 'application/json'
 		};
 
 	if (options.override_shortcuts) {
@@ -15,8 +22,10 @@
 
 	$(function() {
 		$('textarea').each(function() {
+			var file = $(this).closest('form').find('input[name="file"]').val();
+
 			CodeMirror.fromTextArea(this, $.extend({}, options.editor, {
-				mode: 'text/html'
+				mode: mimeTypes[file ? file.split('.').pop() : 'html']
 			}));
 		});
 	});

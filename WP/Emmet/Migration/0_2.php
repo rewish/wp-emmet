@@ -1,9 +1,10 @@
 <?php
 class WP_Emmet_Migration_0_2 {
 	public static function migrate(WP_Emmet $context) {
-		$options = $context->option();
-		$indent = $options['variables']['indentation'];
+		$options = $context->Options->get();
+
 		$editor =& $options['editor'];
+		$indent = $options['variables']['indentation'];
 
 		$editor['profile'] = $options['options']['profile'];
 		$editor['smartIndent'] = $options['options']['pretty_break'];
@@ -13,6 +14,16 @@ class WP_Emmet_Migration_0_2 {
 			$editor['indentUnit'] = strlen($indent);
 		}
 
-		$context->option('editor', $editor);
+		$shortcuts =& $options['shortcuts'];
+
+		foreach ($shortcuts as $type => $shortcutKey) {
+			$shortcuts[$type] = str_replace(
+				array('+', 'Meta', 'Cmd-Shift'),
+				array('-', 'Cmd', 'Shift-Cmd'),
+				$shortcutKey
+			);
+		}
+
+		$context->Options->save($options);
 	}
 }

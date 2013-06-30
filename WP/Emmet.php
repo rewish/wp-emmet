@@ -14,7 +14,7 @@ class WP_Emmet {
 	 * Emmet options instance
 	 * @var WP_Emmet_Options
 	 */
-	protected $Options;
+	public $Options;
 
 	/**
 	 * Emmet lang instance
@@ -96,7 +96,7 @@ class WP_Emmet {
 	public function setupActions() {
 		add_action('admin_print_styles', array($this, 'printStyles'));
 		add_action('admin_enqueue_scripts', array($this, 'enqueueScripts'));
-		add_action('admin_print_footer_scripts', array($this, 'applyScripts'));
+		add_action('admin_print_footer_scripts', array($this, 'applyScripts'), 1);
 	}
 
 	/**
@@ -104,7 +104,7 @@ class WP_Emmet {
 	 */
 	public function printStyles() {
 		$this->CodeMirror->enqueueStyle();
-		$this->CodeMirror->enqueueStyle($this->option('editor.theme'));
+		$this->CodeMirror->enqueueStyle($this->Options->get('editor.theme'));
 		wp_enqueue_style(WP_EMMET_DOMAIN, self::assetURL('css/wp-emmet.css'));
 	}
 
@@ -122,19 +122,5 @@ class WP_Emmet {
 	public function applyScripts() {
 		$shortcuts = $this->Options->get('shortcuts');
 		require_once WP_EMMET_VIEW_DIR . DIRECTORY_SEPARATOR . 'apply_scripts.php';
-	}
-
-	/**
-	 * Get|Set option
-	 *
-	 * @param string $key
-	 * @param mixed $value Optional
-	 * @return mixed
-	 */
-	public function option($key = null, $value = null) {
-		if (count(func_get_args()) === 2) {
-			return $this->Options->set($key, $value);
-		}
-		return $this->Options->get($key);
 	}
 }

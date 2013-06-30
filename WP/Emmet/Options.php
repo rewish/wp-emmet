@@ -44,35 +44,45 @@ class WP_Emmet_Options {
 				'lineNumbers' => '1'
 			),
 
-			'expand_with_tab' => '1',
 			'override_shortcuts' => '',
 
 			'shortcuts' => array(
-				'Expand Abbreviation'      => 'Meta+E',
-				'Match Pair Outward'       => 'Meta+D',
-				'Match Pair Inward'        => 'Shift+Meta+D',
-				'Wrap with Abbreviation'   => 'Shift+Meta+A',
-				'Next Edit Point'          => 'Ctrl+Alt+Right',
-				'Prev Edit Point'          => 'Ctrl+Alt+Left',
-				'Select Line'              => 'Meta+L',
-				'Merge Lines'              => 'Meta+Shift+M',
-				'Toggle Comment'           => 'Meta+/',
-				'Split/Join Tag'           => 'Meta+J',
-				'Remove Tag'               => 'Meta+K',
-				'Evaluate Math Expression' => 'Shift+Meta+Y',
+				'Expand Abbreviation'      => 'Cmd-E',
+				'Match Pair Outward'       => 'Cmd-D',
+				'Match Pair Inward'        => 'Shift-Cmd-D',
+				'Matching Pair'            => 'Cmd-T',
+				'Wrap with Abbreviation'   => 'Shift-Cmd-A',
+				'Next Edit Point'          => 'Ctrl-Alt-Right',
+				'Prev Edit Point'          => 'Ctrl-Alt-Left',
+				'Select Line'              => 'Cmd-L',
+				'Merge Lines'              => 'Cmd-Shift-M',
+				'Toggle Comment'           => 'Cmd-/',
+				'Split/Join Tag'           => 'Cmd-J',
+				'Remove Tag'               => 'Cmd-K',
+				'Evaluate Math Expression' => 'Shift-Cmd-Y',
 
-				'Increment number by 1'   => 'Ctrl+Up',
-				'Decrement number by 1'   => 'Ctrl+Down',
-				'Increment number by 0.1' => 'Alt+Up',
-				'Decrement number by 0.1' => 'Alt+Down',
-				'Increment number by 10'  => 'Ctrl+Alt+Up',
-				'Decrement number by 10'  => 'Ctrl+Alt+Down',
+				'Increment number by 1'   => 'Ctrl-Up',
+				'Decrement number by 1'   => 'Ctrl-Down',
+				'Increment number by 0.1' => 'Alt-Up',
+				'Decrement number by 0.1' => 'Alt-Down',
+				'Increment number by 10'  => 'Ctrl-Alt-Up',
+				'Decrement number by 10'  => 'Ctrl-Alt-Down',
 
-				'Select Next Item'     => 'Meta+.',
-				'Select Previous Item' => 'Meta+,',
-				'Reflect CSS Value'    => 'Meta+Shift+B'
+				'Select Next Item'     => 'Shift-Cmd-.',
+				'Select Previous Item' => 'Shift-Cmd-,',
+				'Reflect CSS Value'    => 'Cmd-B'
 			)
 		), get_option($this->name, array()));
+	}
+
+	/**
+	 * Save options
+	 *
+	 * @param array $options
+	 */
+	public function save(Array $options) {
+		$this->options = $options;
+		update_option($this->name, $options);
 	}
 
 	/**
@@ -80,17 +90,18 @@ class WP_Emmet_Options {
 	 *
 	 * @param string $key
 	 * @param mixed $value
+	 * @param boolean $andSave
 	 */
-	public function set($key, $value) {
+	public function set($key, $value, $andSave = true) {
 		$k = explode('.', $key);
-		$o =& $this->options;
+		$o = $this->options;
 
 		switch (count($k)) {
 			case 1: $o[$k[0]] = $value; break;
 			case 2: $o[$k[0]][$k[1]] = $value; break;
 		}
 
-		update_option($this->name, $this->options);
+		$andSave && $this->save($o);
 	}
 
 	/**

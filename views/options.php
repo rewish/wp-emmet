@@ -17,7 +17,6 @@
 					<td>
 						<?php echo $form->checkBoolean('use_codemirror'); ?>
 						<?php echo $form->label('use_codemirror', __('Enable', $domain)); ?>
-						<p class="description"><?php _e('Can be used in Post editor, Theme editor, Plugin editor', $domain); ?></p>
 					</td>
 				</tr>
 				<tr>
@@ -116,7 +115,7 @@
 
 	<h3><?php _e('Test the Emmet', $domain); ?></h3>
 	<div>
-		<textarea id="content" rows="20" cols="80">.section>p>span+em^^^bq
+		<textarea rows="20" cols="80">.section>p>span+em^^^bq
 
 ul>li*5
 

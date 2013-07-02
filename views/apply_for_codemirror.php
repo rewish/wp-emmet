@@ -23,7 +23,7 @@
 <?php endif; ?>
 
 	$(function() {
-		$('#content, #newcontent').each(function() {
+		$('textarea').each(function() {
 			var file = $(this).closest('form').find('input[name="file"]').val(),
 				editor = CodeMirror.fromTextArea(this, $.extend({}, options, {
 					mode: mimeTypes[file ? file.split('.').pop() : 'html']

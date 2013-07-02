@@ -103,8 +103,10 @@ class WP_Emmet {
 	 * Print styles
 	 */
 	public function printStyles() {
-		$this->CodeMirror->enqueueStyle();
-		$this->CodeMirror->enqueueStyle($this->Options->get('codemirror.theme'));
+		if ($this->isCodeMirrorMode()) {
+			$this->CodeMirror->enqueueStyle();
+			$this->CodeMirror->enqueueStyle($this->Options->get('codemirror.theme'));
+		}
 		wp_enqueue_style(WP_EMMET_DOMAIN, self::assetURL('css/wp-emmet.css'));
 	}
 
@@ -112,7 +114,9 @@ class WP_Emmet {
 	 * Enqueue scripts
 	 */
 	public function enqueueScripts() {
-		$this->CodeMirror->enqueueAllScripts();
+		if ($this->isCodeMirrorMode()) {
+			$this->CodeMirror->enqueueAllScripts();
+		}
 		$type = $this->editorType();
 		wp_enqueue_script(WP_EMMET_DOMAIN, self::assetURL("js/{$type}/emmet.js"), array('underscore'), false, true);
 	}
@@ -132,6 +136,10 @@ class WP_Emmet {
 	 * @return string
 	 */
 	protected function editorType() {
-		return $this->Options->get('use_codemirror') ? 'codemirror' : 'textarea';
+		return $this->isCodeMirrorMode() ? 'codemirror' : 'textarea';
+	}
+
+	protected function isCodeMirrorMode() {
+		return $this->Options->get('use_codemirror') === '1';
 	}
 }

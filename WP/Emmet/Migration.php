@@ -1,11 +1,6 @@
 <?php
 class WP_Emmet_Migration {
 	/**
-	 * Migration version number
-	 */
-	const VERSION = '0.2';
-
-	/**
 	 * Migration version name
 	 */
 	const VERSION_NAME = 'wp-emmet-migrations';
@@ -18,18 +13,23 @@ class WP_Emmet_Migration {
 	public static function migrate(WP_Emmet $context) {
 		$currentVersion = get_option(self::VERSION_NAME, 0);
 		$versions = self::getVersions();
-		$migrated = false;
+		$version = 0;
 
 		foreach ($versions as $info) {
-			if ($currentVersion < $info['version']) {
-				require_once $info['path'];
-				call_user_func(array($info['class'], 'migrate'), $context);
-				$migrated = true;
+			if ($currentVersion >= $info['version']) {
+				continue;
+			}
+
+			require_once $info['path'];
+			call_user_func(array($info['class'], 'migrate'), $context);
+
+			if ($version < $info['version']) {
+				$version = $info['version'];
 			}
 		}
 
-		if ($migrated) {
-			update_option(self::VERSION_NAME, self::VERSION);
+		if ($version > $currentVersion) {
+			update_option(self::VERSION_NAME, $version);
 		}
 	}
 

@@ -108,7 +108,6 @@ class WP_Emmet_CodeMirror {
 
 		foreach ($themes as $theme) {
 			$name = basename($theme, '.css');
-			$label = implode(' ', array_map('ucfirst', explode('-', $name)));
 			$this->registerStyle("theme/$name", $name);
 			$this->themes[$name] = $name;
 		}

@@ -103,14 +103,14 @@ class WP_Emmet_CodeMirror {
 	 * Register themes
 	 */
 	protected function registerThemes() {
-		$this->themes = array('Default' => 'default');
+		$this->themes = array('default' => 'default');
 		$themes = glob(WP_Emmet::assetPath('css/codemirror/theme/*.css'));
 
 		foreach ($themes as $theme) {
 			$name = basename($theme, '.css');
 			$label = implode(' ', array_map('ucfirst', explode('-', $name)));
 			$this->registerStyle("theme/$name", $name);
-			$this->themes[$label] = $name;
+			$this->themes[$name] = $name;
 		}
 	}
 

@@ -6,8 +6,6 @@ jQuery(function($) {
 	// Set variables
 	emmet.require('resources').setVocabulary({variables: config.variables}, 'user');
 
-	console.log(config);
-
 	// Set options
 	textarea.setup(config.options);
 <?php if ($this->Options->get('override_shortcuts')): ?>

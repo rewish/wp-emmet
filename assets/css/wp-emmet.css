@@ -7,9 +7,9 @@
   display: table-row;
 }
 
-#wp-emmet-editor-tabSize,
-#wp-emmet-editor-indentUnit {
-  width: 5em;
+#wp-emmet-codemirror-tabSize,
+#wp-emmet-codemirror-indentUnit {
+  width: 3em;
 }
 
 #template .CodeMirror,

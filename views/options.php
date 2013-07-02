@@ -44,9 +44,9 @@
 <?php				if ($this->options['textarea']['variables']['indentation'] === "\t"): ?>
 							<input type="text" id="<?php echo $this->name; ?>_var_indentation_text" name="<?php echo $this->name; ?>[textarea][variables][indentation]" value="" disabled="disabled"  class="small-text">
 <?php				else: ?>
-							<input type="text" id="<?php echo $this->name; ?>_var_indentation_text" name="<?php echo $this->name; ?>[textarea][variables][indentation]" value="<?php echo $this->options['variables']['indentation']; ?>" class="small-text">
+							<input type="text" id="<?php echo $this->name; ?>_var_indentation_text" name="<?php echo $this->name; ?>[textarea][variables][indentation]" value="<?php echo $this->options['textarea']['variables']['indentation']; ?>" class="small-text">
 <?php				endif; ?>
-						<input type="checkbox" id="<?php echo $this->name; ?>_var_indentation" name="<?php echo $this->name; ?>[textarea][variables][indentation]" value="<?php echo "\t"; ?>"<?php if ($this->options['variables']['indentation'] === "\t") echo ' checked="checked"'; ?>>
+						<input type="checkbox" id="<?php echo $this->name; ?>_var_indentation" name="<?php echo $this->name; ?>[textarea][variables][indentation]" value="<?php echo "\t"; ?>"<?php if ($this->options['textarea']['variables']['indentation'] === "\t") echo ' checked="checked"'; ?>>
 						<label for="<?php echo $this->name; ?>_var_indentation"><?php _e('Use hard tabs', $domain); ?></label>
 					</td>
 				</tr>

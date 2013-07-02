@@ -215,7 +215,7 @@ class WP_Emmet_Options {
 
 		// Boolean
 		foreach (array('use_tab' , 'pretty_break') as $key) {
-			$options['textarea'][$key] = $options['textarea'][$key] === '1';
+			$options['textarea']['options'][$key] = $options['textarea']['options'][$key] === '1';
 		}
 
 		unset($options['codemirror']);

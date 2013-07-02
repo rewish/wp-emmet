@@ -131,8 +131,7 @@ m10p30e5x
 
 <script>
 jQuery(function($) {
-	var $shortcuts = $('.<?php echo $this->name; ?>_shortcuts'),
-		shortcut = emmet.require('shortcut');
+	var $shortcuts = $('.<?php echo $this->name; ?>_shortcuts');
 
 	$('#<?php echo $form->id('use_codemirror'); ?>').on('click', function() {
 		$('[data-use-editor-type]').attr('data-use-editor-type', this.checked ? 'codemirror' : 'textarea');

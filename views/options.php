@@ -80,7 +80,7 @@
 
 	<h3><?php _e('Test the Emmet', $domain); ?></h3>
 	<div>
-		<textarea rows="20" cols="80">.section>p>span+em^^^bq
+		<textarea id="content" rows="20" cols="80">.section>p>span+em^^^bq
 
 ul>li*5
 

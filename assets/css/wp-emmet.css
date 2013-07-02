@@ -1,6 +1,15 @@
-#wp-emmet-editor-tabSize,
-#wp-emmet-editor-indentUnit {
-  width: 5em;
+[data-use-editor-type] [data-editor-type] {
+  display: none;
+}
+
+[data-use-editor-type="textarea"] [data-editor-type="textarea"],
+[data-use-editor-type="codemirror"] [data-editor-type="codemirror"] {
+  display: table-row;
+}
+
+#wp-emmet-codemirror-tabSize,
+#wp-emmet-codemirror-indentUnit {
+  width: 3em;
 }
 
 #template .CodeMirror,

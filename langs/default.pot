@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP Emmet\n"
-"POT-Creation-Date: 2013-06-30 07:52+0900\n"
-"PO-Revision-Date: 2013-06-30 07:53+0900\n"
+"POT-Creation-Date: 2013-07-02 23:40+0900\n"
+"PO-Revision-Date: 2013-07-02 23:40+0900\n"
 "Last-Translator: rewish <rewish.org@gmail.com>\n"
 "Language-Team: \n"
 "Language: English\n"
@@ -19,141 +19,173 @@ msgid "Editor"
 msgstr ""
 
 #: views/options.php:16
-msgid "Profile"
+msgid "Code Coloring"
+msgstr ""
+
+#: views/options.php:19
+msgid "Enable"
 msgstr ""
 
 #: views/options.php:20
-msgid "Theme"
+msgid "Can be used in Post codemirror, Theme codemirror, Plugin codemirror"
 msgstr ""
 
 #: views/options.php:24
-msgid "Tabs and Indents"
+msgid "Profile"
 msgstr ""
 
-#: views/options.php:27
-msgid "Use tab character"
+#: views/options.php:29
+msgid "Use tab key"
 msgstr ""
 
-#: views/options.php:32
-msgid "Smart indent"
+#: views/options.php:32 views/options.php:39
+msgid "Use"
 msgstr ""
 
 #: views/options.php:36
-msgid "Tab size"
+msgid "Auto indent"
 msgstr ""
 
-#: views/options.php:41
-msgid "Indent unit"
+#: views/options.php:43
+msgid "Indent character"
 msgstr ""
 
-#: views/options.php:46
-msgid "Appearance"
+#: views/options.php:51
+msgid "Use hard tabs"
 msgstr ""
 
-#: views/options.php:49
-msgid "Show line numbers"
-msgstr ""
-
-#: views/options.php:54
-msgid "Line wrapping"
+#: views/options.php:56
+msgid "Theme"
 msgstr ""
 
 #: views/options.php:60
-msgid "Shortcuts"
+msgid "Tabs and Indents"
 msgstr ""
 
 #: views/options.php:63
-msgid "Override shortcuts"
+msgid "Use tab character"
+msgstr ""
+
+#: views/options.php:68
+msgid "Smart indent"
+msgstr ""
+
+#: views/options.php:72
+msgid "Tab size"
 msgstr ""
 
 #: views/options.php:77
+msgid "Indent unit"
+msgstr ""
+
+#: views/options.php:82
+msgid "Appearance"
+msgstr ""
+
+#: views/options.php:85
+msgid "Show line numbers"
+msgstr ""
+
+#: views/options.php:90
+msgid "Line wrapping"
+msgstr ""
+
+#: views/options.php:96
+msgid "Shortcuts"
+msgstr ""
+
+#: views/options.php:99
+msgid "Override shortcuts"
+msgstr ""
+
+#: views/options.php:113
 msgid "Save option"
 msgstr ""
 
-#: views/options.php:81
+#: views/options.php:117
 msgid "Test the Emmet"
 msgstr ""
 
-#: views/options.php:122
+#: views/options.php:161
 msgid "Expand Abbreviation"
 msgstr ""
 
-#: views/options.php:123
+#: views/options.php:162
 msgid "Match Pair Outward"
 msgstr ""
 
-#: views/options.php:124
+#: views/options.php:163
 msgid "Match Pair Inward"
 msgstr ""
 
-#: views/options.php:125
+#: views/options.php:164
 msgid "Wrap with Abbreviation"
 msgstr ""
 
-#: views/options.php:126
+#: views/options.php:165
 msgid "Next Edit Point"
 msgstr ""
 
-#: views/options.php:127
+#: views/options.php:166
 msgid "Prev Edit Point"
 msgstr ""
 
-#: views/options.php:128
+#: views/options.php:167
 msgid "Select Line"
 msgstr ""
 
-#: views/options.php:129
+#: views/options.php:168
 msgid "Merge Lines"
 msgstr ""
 
-#: views/options.php:130
+#: views/options.php:169
 msgid "Toggle Comment"
 msgstr ""
 
-#: views/options.php:131
+#: views/options.php:170
 msgid "Split/Join Tag"
 msgstr ""
 
-#: views/options.php:132
+#: views/options.php:171
 msgid "Remove Tag"
 msgstr ""
 
-#: views/options.php:133
+#: views/options.php:172
 msgid "Evaluate Math Expression"
 msgstr ""
 
-#: views/options.php:134
+#: views/options.php:173
 msgid "Increment number by 1"
 msgstr ""
 
-#: views/options.php:135
+#: views/options.php:174
 msgid "Decrement number by 1"
 msgstr ""
 
-#: views/options.php:136
+#: views/options.php:175
 msgid "Increment number by 0.1"
 msgstr ""
 
-#: views/options.php:137
+#: views/options.php:176
 msgid "Decrement number by 0.1"
 msgstr ""
 
-#: views/options.php:138
+#: views/options.php:177
 msgid "Increment number by 10"
 msgstr ""
 
-#: views/options.php:139
+#: views/options.php:178
 msgid "Decrement number by 10"
 msgstr ""
 
-#: views/options.php:140
+#: views/options.php:179
 msgid "Select Next Item"
 msgstr ""
 
-#: views/options.php:141
+#: views/options.php:180
 msgid "Select Previous Item"
 msgstr ""
 
-#: views/options.php:142
+#: views/options.php:181
 msgid "Reflect CSS Value"
 msgstr ""

@@ -1,4 +1,4 @@
-<div class="wrap">
+<div class="wrap" data-use-editor-type="<?php echo $this->options['use_codemirror'] ? 'codemirror' : 'textarea'; ?>">
 	<div id="icon-options-general" class="icon32"><br></div>
 	<h2>Emmet</h2>
 
@@ -13,45 +13,81 @@
 		<table class="form-table">
 			<tbody>
 				<tr>
-					<th><?php _e('Profile', $domain); ?></th>
-					<td><?php echo $form->select('editor.profile', 'xhtml,html,xml,plain,line'); ?></td>
-				</tr>
-				<tr>
-					<th><?php _e('Theme', $domain); ?></th>
-					<td><?php echo $form->select('editor.theme', $themes); ?></td>
-				</tr>
-				<tr>
-					<th><?php _e('Tabs and Indents', $domain); ?></th>
+					<th><?php _e('Code Coloring', $domain); ?></th>
 					<td>
-						<?php echo $form->checkBoolean('editor.indentWithTabs'); ?>
-						<?php echo $form->label('editor.indentWithTabs', __('Use tab character', $domain)); ?>
-
-						<br>
-
-						<?php echo $form->checkBoolean('editor.smartIndent'); ?>
-						<?php echo $form->label('editor.smartIndent', __('Smart indent', $domain)); ?>
-
-						<br>
-
-						<?php echo $form->label('editor.tabSize', __('Tab size', $domain)); ?>
-						<?php echo $form->numberField('editor.tabSize'); ?>
-
-						<br>
-
-						<?php echo $form->label('editor.indentUnit', __('Indent unit', $domain)); ?>
-						<?php echo $form->numberField('editor.indentUnit'); ?>
+						<?php echo $form->checkBoolean('use_codemirror'); ?>
+						<?php echo $form->label('use_codemirror', __('Enable', $domain)); ?>
+						<p class="description"><?php _e('Can be used in Post codemirror, Theme codemirror, Plugin codemirror', $domain); ?></p>
 					</td>
 				</tr>
 				<tr>
-					<th><?php _e('Appearance'); ?></th>
+					<th><?php _e('Profile', $domain); ?></th>
+					<td><?php echo $form->select('profile', 'xhtml,html,xml,plain,line'); ?></td>
+				</tr>
+
+				<tr data-editor-type="textarea">
+					<th><?php _e('Use tab key', $domain); ?></th>
 					<td>
-						<?php echo $form->checkBoolean('editor.lineNumbers'); ?>
-						<?php echo $form->label('editor.lineNumbers', __('Show line numbers', $domain)); ?>
+						<?php echo $form->checkBoolean('textarea.options.use_tab'); ?>
+						<?php echo $form->label('textarea.options.use_tab', __('Use', $domain)); ?>
+					</td>
+				</tr>
+				<tr data-editor-type="textarea">
+					<th><?php _e('Auto indent', $domain); ?></th>
+					<td>
+						<?php echo $form->checkBoolean('textarea.options.pretty_break'); ?>
+						<?php echo $form->label('textarea.options.pretty_break', __('Use', $domain)); ?>
+					</td>
+				</tr>
+				<tr data-editor-type="textarea">
+					<th><?php _e('Indent character', $domain); ?></th>
+					<td>
+<?php				if ($this->options['textarea']['variables']['indentation'] === "\t"): ?>
+							<input type="text" id="<?php echo $this->name; ?>_var_indentation_text" name="<?php echo $this->name; ?>[textarea][variables][indentation]" value="" disabled="disabled"  class="small-text">
+<?php				else: ?>
+							<input type="text" id="<?php echo $this->name; ?>_var_indentation_text" name="<?php echo $this->name; ?>[textarea][variables][indentation]" value="<?php echo $this->options['variables']['indentation']; ?>" class="small-text">
+<?php				endif; ?>
+						<input type="checkbox" id="<?php echo $this->name; ?>_var_indentation" name="<?php echo $this->name; ?>[textarea][variables][indentation]" value="<?php echo "\t"; ?>"<?php if ($this->options['variables']['indentation'] === "\t") echo ' checked="checked"'; ?>>
+						<label for="<?php echo $this->name; ?>_var_indentation"><?php _e('Use hard tabs', $domain); ?></label>
+					</td>
+				</tr>
+
+				<tr data-editor-type="codemirror">
+					<th><?php _e('Theme', $domain); ?></th>
+					<td><?php echo $form->select('codemirror.theme', $themes); ?></td>
+				</tr>
+				<tr data-editor-type="codemirror">
+					<th><?php _e('Tabs and Indents', $domain); ?></th>
+					<td>
+						<?php echo $form->checkBoolean('codemirror.indentWithTabs'); ?>
+						<?php echo $form->label('codemirror.indentWithTabs', __('Use tab character', $domain)); ?>
 
 						<br>
 
-						<?php echo $form->checkBoolean('editor.lineWrapping'); ?>
-						<?php echo $form->label('editor.lineWrapping', __('Line wrapping', $domain)); ?>
+						<?php echo $form->checkBoolean('codemirror.smartIndent'); ?>
+						<?php echo $form->label('codemirror.smartIndent', __('Smart indent', $domain)); ?>
+
+						<br>
+
+						<?php echo $form->label('codemirror.tabSize', __('Tab size', $domain)); ?>
+						<?php echo $form->numberField('codemirror.tabSize'); ?>
+
+						<br>
+
+						<?php echo $form->label('codemirror.indentUnit', __('Indent unit', $domain)); ?>
+						<?php echo $form->numberField('codemirror.indentUnit'); ?>
+					</td>
+				</tr>
+				<tr data-editor-type="codemirror">
+					<th><?php _e('Appearance'); ?></th>
+					<td>
+						<?php echo $form->checkBoolean('codemirror.lineNumbers'); ?>
+						<?php echo $form->label('codemirror.lineNumbers', __('Show line numbers', $domain)); ?>
+
+						<br>
+
+						<?php echo $form->checkBoolean('codemirror.lineWrapping'); ?>
+						<?php echo $form->label('codemirror.lineWrapping', __('Line wrapping', $domain)); ?>
 					</td>
 				</tr>
 			</tbody>
@@ -95,8 +131,11 @@ m10p30e5x
 
 <script>
 jQuery(function($) {
-	var $shortcuts = $('.<?php echo $this->name; ?>_shortcuts'),
-		shortcut = emmet.require('shortcut');
+	var $shortcuts = $('.<?php echo $this->name; ?>_shortcuts');
+
+	$('#<?php echo $form->id('use_codemirror'); ?>').on('click', function() {
+		$('[data-use-editor-type]').attr('data-use-editor-type', this.checked ? 'codemirror' : 'textarea');
+	});
 
 	$('#<?php echo $this->name; ?>_var_indentation').click(function() {
 		var $text = $('#<?php echo $this->name; ?>_var_indentation_text');

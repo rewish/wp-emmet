@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP Emmet\n"
-"POT-Creation-Date: 2013-06-30 07:57+0900\n"
-"PO-Revision-Date: 2013-06-30 08:00+0900\n"
+"POT-Creation-Date: 2013-07-02 23:40+0900\n"
+"PO-Revision-Date: 2013-07-02 23:43+0900\n"
 "Last-Translator: rewish <rewish.org@gmail.com>\n"
 "Language-Team: \n"
 "Language: Japanese\n"
@@ -19,153 +19,176 @@ msgid "Editor"
 msgstr "エディタ"
 
 #: views/options.php:16
+msgid "Code Coloring"
+msgstr "コードカラーリング"
+
+#: views/options.php:19
+msgid "Enable"
+msgstr "有効化"
+
+#: views/options.php:20
+msgid "Can be used in Post codemirror, Theme codemirror, Plugin codemirror"
+msgstr "記事編集、テーマ編集、プラグイン編集で使用できます"
+
+#: views/options.php:24
 msgid "Profile"
 msgstr "プロファイル"
 
-#: views/options.php:20
+#: views/options.php:29
+msgid "Use tab key"
+msgstr "Tabキーを使用"
+
+#: views/options.php:32 views/options.php:39
+msgid "Use"
+msgstr "使用"
+
+#: views/options.php:36
+msgid "Auto indent"
+msgstr "自動インデント"
+
+#: views/options.php:43
+msgid "Indent character"
+msgstr "タブ文字を使用"
+
+#: views/options.php:51
+msgid "Use hard tabs"
+msgstr "ハードタブを使用"
+
+#: views/options.php:56
 msgid "Theme"
 msgstr "テーマ"
 
-#: views/options.php:24
+#: views/options.php:60
 msgid "Tabs and Indents"
 msgstr "タブとインデント"
 
-#: views/options.php:27
+#: views/options.php:63
 msgid "Use tab character"
 msgstr "タブ文字を使用"
 
-#: views/options.php:32
+#: views/options.php:68
 msgid "Smart indent"
 msgstr "スマートインデント"
 
-#: views/options.php:36
+#: views/options.php:72
 msgid "Tab size"
 msgstr "タブサイズ"
 
-#: views/options.php:41
+#: views/options.php:77
 msgid "Indent unit"
 msgstr "インデント幅"
 
-#: views/options.php:46
+#: views/options.php:82
 msgid "Appearance"
 msgstr "外観"
 
-#: views/options.php:49
+#: views/options.php:85
 msgid "Show line numbers"
 msgstr "行ナンバーを表示"
 
-#: views/options.php:54
+#: views/options.php:90
 msgid "Line wrapping"
 msgstr "行を折り返す"
 
-#: views/options.php:60
+#: views/options.php:96
 msgid "Shortcuts"
 msgstr "ショートカット"
 
-#: views/options.php:63
+#: views/options.php:99
 msgid "Override shortcuts"
 msgstr "ショートカットを上書き"
 
-#: views/options.php:77
+#: views/options.php:113
 msgid "Save option"
 msgstr "オプションを保存"
 
-#: views/options.php:81
+#: views/options.php:117
 msgid "Test the Emmet"
 msgstr "Emmetをテスト"
 
-#: views/options.php:122
+#: views/options.php:161
 msgid "Expand Abbreviation"
 msgstr "省略コードの展開"
 
-#: views/options.php:123
+#: views/options.php:162
 msgid "Match Pair Outward"
 msgstr "タグの外側を選択"
 
-#: views/options.php:124
+#: views/options.php:163
 msgid "Match Pair Inward"
 msgstr "タグの内側を選択"
 
-#: views/options.php:125
+#: views/options.php:164
 msgid "Wrap with Abbreviation"
 msgstr "省略コードで包括"
 
-#: views/options.php:126
+#: views/options.php:165
 msgid "Next Edit Point"
 msgstr "次の編集箇所へ"
 
-#: views/options.php:127
+#: views/options.php:166
 msgid "Prev Edit Point"
 msgstr "前の編集箇所へ"
 
-#: views/options.php:128
+#: views/options.php:167
 msgid "Select Line"
 msgstr "行を選択"
 
-#: views/options.php:129
+#: views/options.php:168
 msgid "Merge Lines"
 msgstr "要素を1行に結合"
 
-#: views/options.php:130
+#: views/options.php:169
 msgid "Toggle Comment"
 msgstr "コメントアウトの実行/解除"
 
-#: views/options.php:131
+#: views/options.php:170
 msgid "Split/Join Tag"
 msgstr "タグの結合/分解"
 
-#: views/options.php:132
+#: views/options.php:171
 msgid "Remove Tag"
 msgstr "タグを削除"
 
-#: views/options.php:133
+#: views/options.php:172
 msgid "Evaluate Math Expression"
 msgstr "数式を評価"
 
-#: views/options.php:134
+#: views/options.php:173
 msgid "Increment number by 1"
 msgstr "数値を1増加"
 
-#: views/options.php:135
+#: views/options.php:174
 msgid "Decrement number by 1"
 msgstr "数値を1減少"
 
-#: views/options.php:136
+#: views/options.php:175
 msgid "Increment number by 0.1"
 msgstr "数値を0.1増加"
 
-#: views/options.php:137
+#: views/options.php:176
 msgid "Decrement number by 0.1"
 msgstr "数値を0.1減少"
 
-#: views/options.php:138
+#: views/options.php:177
 msgid "Increment number by 10"
 msgstr "数値を10増加"
 
-#: views/options.php:139
+#: views/options.php:178
 msgid "Decrement number by 10"
 msgstr "数値を10減少"
 
-#: views/options.php:140
+#: views/options.php:179
 msgid "Select Next Item"
 msgstr "次の項目を選択"
 
-#: views/options.php:141
+#: views/options.php:180
 msgid "Select Previous Item"
 msgstr "前の項目を選択"
 
-#: views/options.php:142
+#: views/options.php:181
 msgid "Reflect CSS Value"
 msgstr "CSSの値を反映"
 
 #~ msgid "Options"
 #~ msgstr "オプション"
-
-#~ msgid "Use tab key"
-#~ msgstr "Tabキーを使用"
-
-#~ msgid "Use"
-#~ msgstr "使用"
-
-#~ msgid "Use hard tabs"
-#~ msgstr "ハードタブを使用"

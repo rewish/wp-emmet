@@ -1,11 +1,9 @@
 <script>
 !function($) {
 	var editorKey = '<?php echo WP_EMMET_DOMAIN; ?>-editor',
-		options = <?php echo $this->Options->toJSON(); ?>,
-		keymap = {
-			Tab: 'expand_abbreviation_with_tab',
-			Enter: 'insert_formatted_line_break_only'
-		},
+		options = $.extend(<?php echo $this->Options->toJSON('codemirror'); ?>, {
+			profile: '<?php echo $this->Options->get('profile'); ?>'
+		}),
 		mimeTypes = {
 			php: 'application/x-httpd-php',
 			html: 'text/html',
@@ -14,17 +12,20 @@
 			json: 'application/json'
 		};
 
-	if (options.override_shortcuts) {
-		$.each(options.shortcuts, function(type, key) {
-			keymap[key] = type.replace(/\s|\//g, '_').replace('.', '').toLowerCase();
-		});
-		window.emmetKeymap = keymap;
-	}
+<?php if ($this->Options->get('override_shortcuts')): ?>
+	window.emmetKeymap = {
+<?php foreach ($shortcuts as $label => $keystroke): ?>
+		'<?php echo $keystroke; ?>': '<?php echo str_replace(array(' ', '/', '.'), array('_', '_', ''), strtolower($label)); ?>',
+<?php endforeach; ?>
+		Tab: 'expand_abbreviation_with_tab',
+		Enter: 'insert_formatted_line_break_only'
+	};
+<?php endif; ?>
 
 	$(function() {
 		$('#content, #newcontent').each(function() {
 			var file = $(this).closest('form').find('input[name="file"]').val(),
-				editor = CodeMirror.fromTextArea(this, $.extend({}, options.editor, {
+				editor = CodeMirror.fromTextArea(this, $.extend({}, options, {
 					mode: mimeTypes[file ? file.split('.').pop() : 'html']
 				}));
 			$(this).data(editorKey, editor);
@@ -73,8 +74,6 @@
 					text = editor.doc.getSelection(),
 					startPos = text.indexOf(this.tagStart),
 					endPos = text.indexOf(this.tagEnd);
-
-				console.log(this);
 
 				if (startPos !== -1 && endPos !== -1) {
 					text = text.substring(this.tagStart.length, endPos);

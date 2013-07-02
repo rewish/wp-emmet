@@ -1,4 +1,4 @@
-<div class="wrap">
+<div class="wrap" data-use-editor-type="<?php echo $this->options['use_codemirror'] ? 'codemirror' : 'textarea'; ?>">
 	<div id="icon-options-general" class="icon32"><br></div>
 	<h2>Emmet</h2>
 
@@ -133,6 +133,10 @@ m10p30e5x
 jQuery(function($) {
 	var $shortcuts = $('.<?php echo $this->name; ?>_shortcuts'),
 		shortcut = emmet.require('shortcut');
+
+	$('#<?php echo $form->id('use_codemirror'); ?>').on('click', function() {
+		$('[data-use-editor-type]').attr('data-use-editor-type', this.checked ? 'codemirror' : 'textarea');
+	});
 
 	$('#<?php echo $this->name; ?>_var_indentation').click(function() {
 		var $text = $('#<?php echo $this->name; ?>_var_indentation_text');

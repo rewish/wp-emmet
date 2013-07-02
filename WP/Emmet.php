@@ -113,7 +113,8 @@ class WP_Emmet {
 	 */
 	public function enqueueScripts() {
 		$this->CodeMirror->enqueueAllScripts();
-		wp_enqueue_script(WP_EMMET_DOMAIN, self::assetURL('js/emmet.js'), array('underscore'), false, true);
+		$type = $this->editorType();
+		wp_enqueue_script(WP_EMMET_DOMAIN, self::assetURL("js/{$type}/emmet.js"), array('underscore'), false, true);
 	}
 
 	/**
@@ -121,6 +122,16 @@ class WP_Emmet {
 	 */
 	public function applyScripts() {
 		$shortcuts = $this->Options->get('shortcuts');
-		require_once WP_EMMET_VIEW_DIR . DIRECTORY_SEPARATOR . 'apply_scripts.php';
+		$type = $this->editorType();
+		require_once WP_EMMET_VIEW_DIR . DIRECTORY_SEPARATOR . "apply_for_{$type}.php";
+	}
+
+	/**
+	 * Editor type
+	 *
+	 * @return string
+	 */
+	protected function editorType() {
+		return $this->Options->get('use_codemirror') ? 'codemirror' : 'textarea';
 	}
 }

@@ -17,7 +17,7 @@
 					<td>
 						<?php echo $form->checkBoolean('use_codemirror'); ?>
 						<?php echo $form->label('use_codemirror', __('Enable', $domain)); ?>
-						<p class="description"><?php _e('Can be used in Post codemirror, Theme codemirror, Plugin codemirror', $domain); ?></p>
+						<p class="description"><?php _e('Can be used in Post editor, Theme editor, Plugin editor', $domain); ?></p>
 					</td>
 				</tr>
 				<tr>

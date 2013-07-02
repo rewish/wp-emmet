@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP Emmet\n"
-"POT-Creation-Date: 2013-07-02 23:40+0900\n"
-"PO-Revision-Date: 2013-07-02 23:40+0900\n"
+"POT-Creation-Date: 2013-07-02 23:50+0900\n"
+"PO-Revision-Date: 2013-07-02 23:50+0900\n"
 "Last-Translator: rewish <rewish.org@gmail.com>\n"
 "Language-Team: \n"
 "Language: English\n"
@@ -27,7 +27,7 @@ msgid "Enable"
 msgstr ""
 
 #: views/options.php:20
-msgid "Can be used in Post codemirror, Theme codemirror, Plugin codemirror"
+msgid "Can be used in Post editor, Theme editor, Plugin editor"
 msgstr ""
 
 #: views/options.php:24

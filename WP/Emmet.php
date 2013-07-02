@@ -139,6 +139,11 @@ class WP_Emmet {
 		return $this->isCodeMirrorMode() ? 'codemirror' : 'textarea';
 	}
 
+	/**
+	 * Is CodeMirror mode
+	 *
+	 * @return bool
+	 */
 	protected function isCodeMirrorMode() {
 		return $this->Options->get('use_codemirror') === '1';
 	}

@@ -16,6 +16,12 @@ class WP_Emmet_Options {
 	protected $options;
 
 	/**
+	 * Normalized options
+	 * @var array
+	 */
+	protected $normalizedOptions;
+
+	/**
 	 * Constructor
 	 *
 	 * @param string $name Optional, Name of option.
@@ -31,6 +37,22 @@ class WP_Emmet_Options {
 	 */
 	public function load() {
 		return array_merge(array(
+			'use_codemirror' => '1',
+
+			'profile' => 'xhtml',
+
+			'textarea' => array(
+				'variables' => array(
+					'indentation' => "\t"
+				),
+
+				'options' => array(
+					'syntax' => 'html',
+					'use_tab' => '1',
+					'pretty_break' => '1'
+				),
+			),
+
 			'editor' => array(
 				'profile' => 'html',
 				'theme' => 'default',
@@ -40,37 +62,37 @@ class WP_Emmet_Options {
 				'tabSize' => 4,
 				'smartIndent' => '1',
 
-				'lineWrapping' => '1',
+				'lineWrapping' => '',
 				'lineNumbers' => '1'
 			),
 
 			'override_shortcuts' => '',
 
 			'shortcuts' => array(
-				'Expand Abbreviation'      => 'Cmd-E',
-				'Match Pair Outward'       => 'Cmd-D',
-				'Match Pair Inward'        => 'Shift-Cmd-D',
-				'Matching Pair'            => 'Cmd-T',
-				'Wrap with Abbreviation'   => 'Shift-Cmd-A',
-				'Next Edit Point'          => 'Ctrl-Alt-Right',
-				'Prev Edit Point'          => 'Ctrl-Alt-Left',
-				'Select Line'              => 'Cmd-L',
-				'Merge Lines'              => 'Cmd-Shift-M',
-				'Toggle Comment'           => 'Cmd-/',
-				'Split/Join Tag'           => 'Cmd-J',
-				'Remove Tag'               => 'Cmd-K',
-				'Evaluate Math Expression' => 'Shift-Cmd-Y',
+				'Expand Abbreviation'      => 'Meta+E',
+				'Match Pair Outward'       => 'Meta+D',
+				'Match Pair Inward'        => 'Shift+Meta+D',
+				'Matching Pair'            => 'Meta+T',
+				'Wrap with Abbreviation'   => 'Shift+Meta+A',
+				'Next Edit Point'          => 'Ctrl+Alt+Right',
+				'Prev Edit Point'          => 'Ctrl+Alt+Left',
+				'Select Line'              => 'Meta+L',
+				'Merge Lines'              => 'Meta+Shift+M',
+				'Toggle Comment'           => 'Meta+/',
+				'Split/Join Tag'           => 'Meta+J',
+				'Remove Tag'               => 'Meta+K',
+				'Evaluate Math Expression' => 'Shift+Meta+Y',
 
-				'Increment number by 1'   => 'Ctrl-Up',
-				'Decrement number by 1'   => 'Ctrl-Down',
-				'Increment number by 0.1' => 'Alt-Up',
-				'Decrement number by 0.1' => 'Alt-Down',
-				'Increment number by 10'  => 'Ctrl-Alt-Up',
-				'Decrement number by 10'  => 'Ctrl-Alt-Down',
+				'Increment number by 1'   => 'Ctrl+Up',
+				'Decrement number by 1'   => 'Ctrl+Down',
+				'Increment number by 0.1' => 'Alt+Up',
+				'Decrement number by 0.1' => 'Alt+Down',
+				'Increment number by 10'  => 'Ctrl+Alt+Up',
+				'Decrement number by 10'  => 'Ctrl+Alt+Down',
 
-				'Select Next Item'     => 'Shift-Cmd-.',
-				'Select Previous Item' => 'Shift-Cmd-,',
-				'Reflect CSS Value'    => 'Cmd-B'
+				'Select Next Item'     => 'Shift+Meta+.',
+				'Select Previous Item' => 'Shift+Meta+,',
+				'Reflect CSS Value'    => 'Meta+B'
 			)
 		), get_option($this->name, array()));
 	}
@@ -171,6 +193,43 @@ class WP_Emmet_Options {
 	 * @return array
 	 */
 	public function normalizedOptions() {
+		if ($this->normalizedOptions) {
+			return $this->normalizedOptions;
+		}
+
+		if ($this->options['use_codemirror']) {
+			$this->normalizedOptions = $this->normalizedOptionsForCodeMirror();
+		} else {
+			$this->normalizedOptions = $this->normalizedOptionsForTextarea();
+		}
+
+		return $this->normalizedOptions;
+	}
+
+	/**
+	 * Normalized options for Textarea
+	 *
+	 * @return array
+	 */
+	protected function normalizedOptionsForTextarea() {
+		$options = $this->options;
+
+		// Boolean
+		foreach (array('use_tab' , 'pretty_break') as $key) {
+			$options['textarea'][$key] = $options['textarea'][$key] === '1';
+		}
+
+		unset($options['editor']);
+
+		return $options;
+	}
+
+	/**
+	 * Normalized options for CodeMirror
+	 *
+	 * @return array
+	 */
+	protected function normalizedOptionsForCodeMirror() {
 		$options = $this->options;
 
 		// Boolean
@@ -183,9 +242,21 @@ class WP_Emmet_Options {
 			$options['editor'][$key] = (int)$options['editor'][$key];
 		}
 
+		// Indent
 		if ($options['editor']['indentWithTabs']) {
 			$options['editor']['indentUnit'] = $options['editor']['tabSize'];
 		}
+
+		// Shortcuts
+		foreach ($options['shortcuts'] as $type => $shortcutKey) {
+			$options['shortcuts'][$type] = str_replace(
+				array('+', 'Meta', 'Cmd-Shift'),
+				array('-', 'Cmd', 'Shift-Cmd'),
+				$shortcutKey
+			);
+		}
+
+		unset($options['textarea']);
 
 		return $options;
 	}

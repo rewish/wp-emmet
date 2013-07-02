@@ -13,14 +13,50 @@
 		<table class="form-table">
 			<tbody>
 				<tr>
-					<th><?php _e('Profile', $domain); ?></th>
-					<td><?php echo $form->select('editor.profile', 'xhtml,html,xml,plain,line'); ?></td>
+					<th><?php _e('Code Coloring', $domain); ?></th>
+					<td>
+						<?php echo $form->checkBoolean('use_codemirror'); ?>
+						<?php echo $form->label('use_codemirror', __('Enable', $domain)); ?>
+						<p class="description"><?php _e('Can be used in Post editor, Theme editor, Plugin editor', $domain); ?></p>
+					</td>
 				</tr>
 				<tr>
+					<th><?php _e('Profile', $domain); ?></th>
+					<td><?php echo $form->select('profile', 'xhtml,html,xml,plain,line'); ?></td>
+				</tr>
+
+				<tr data-editor-type="textarea">
+					<th><?php _e('Use tab key', $domain); ?></th>
+					<td>
+						<?php echo $form->checkBoolean('textarea.options.use_tab'); ?>
+						<?php echo $form->label('textarea.options.use_tab', __('Use', $domain)); ?>
+					</td>
+				</tr>
+				<tr data-editor-type="textarea">
+					<th><?php _e('Auto indent', $domain); ?></th>
+					<td>
+						<?php echo $form->checkBoolean('textarea.options.pretty_break'); ?>
+						<?php echo $form->label('textarea.options.pretty_break', __('Use', $domain)); ?>
+					</td>
+				</tr>
+				<tr data-editor-type="textarea">
+					<th><?php _e('Indent character', $domain); ?></th>
+					<td>
+<?php				if ($this->options['textarea']['variables']['indentation'] === "\t"): ?>
+							<input type="text" id="<?php echo $this->name; ?>_var_indentation_text" name="<?php echo $this->name; ?>[textarea][variables][indentation]" value="" disabled="disabled"  class="small-text">
+<?php				else: ?>
+							<input type="text" id="<?php echo $this->name; ?>_var_indentation_text" name="<?php echo $this->name; ?>[textarea][variables][indentation]" value="<?php echo $this->options['variables']['indentation']; ?>" class="small-text">
+<?php				endif; ?>
+						<input type="checkbox" id="<?php echo $this->name; ?>_var_indentation" name="<?php echo $this->name; ?>[textarea][variables][indentation]" value="<?php echo "\t"; ?>"<?php if ($this->options['variables']['indentation'] === "\t") echo ' checked="checked"'; ?>>
+						<label for="<?php echo $this->name; ?>_var_indentation"><?php _e('Use hard tabs', $domain); ?></label>
+					</td>
+				</tr>
+
+				<tr data-editor-type="codemirror">
 					<th><?php _e('Theme', $domain); ?></th>
 					<td><?php echo $form->select('editor.theme', $themes); ?></td>
 				</tr>
-				<tr>
+				<tr data-editor-type="codemirror">
 					<th><?php _e('Tabs and Indents', $domain); ?></th>
 					<td>
 						<?php echo $form->checkBoolean('editor.indentWithTabs'); ?>
@@ -42,7 +78,7 @@
 						<?php echo $form->numberField('editor.indentUnit'); ?>
 					</td>
 				</tr>
-				<tr>
+				<tr data-editor-type="codemirror">
 					<th><?php _e('Appearance'); ?></th>
 					<td>
 						<?php echo $form->checkBoolean('editor.lineNumbers'); ?>

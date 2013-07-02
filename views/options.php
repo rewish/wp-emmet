@@ -17,7 +17,7 @@
 					<td>
 						<?php echo $form->checkBoolean('use_codemirror'); ?>
 						<?php echo $form->label('use_codemirror', __('Enable', $domain)); ?>
-						<p class="description"><?php _e('Can be used in Post editor, Theme editor, Plugin editor', $domain); ?></p>
+						<p class="description"><?php _e('Can be used in Post codemirror, Theme codemirror, Plugin codemirror', $domain); ?></p>
 					</td>
 				</tr>
 				<tr>
@@ -54,40 +54,40 @@
 
 				<tr data-editor-type="codemirror">
 					<th><?php _e('Theme', $domain); ?></th>
-					<td><?php echo $form->select('editor.theme', $themes); ?></td>
+					<td><?php echo $form->select('codemirror.theme', $themes); ?></td>
 				</tr>
 				<tr data-editor-type="codemirror">
 					<th><?php _e('Tabs and Indents', $domain); ?></th>
 					<td>
-						<?php echo $form->checkBoolean('editor.indentWithTabs'); ?>
-						<?php echo $form->label('editor.indentWithTabs', __('Use tab character', $domain)); ?>
+						<?php echo $form->checkBoolean('codemirror.indentWithTabs'); ?>
+						<?php echo $form->label('codemirror.indentWithTabs', __('Use tab character', $domain)); ?>
 
 						<br>
 
-						<?php echo $form->checkBoolean('editor.smartIndent'); ?>
-						<?php echo $form->label('editor.smartIndent', __('Smart indent', $domain)); ?>
+						<?php echo $form->checkBoolean('codemirror.smartIndent'); ?>
+						<?php echo $form->label('codemirror.smartIndent', __('Smart indent', $domain)); ?>
 
 						<br>
 
-						<?php echo $form->label('editor.tabSize', __('Tab size', $domain)); ?>
-						<?php echo $form->numberField('editor.tabSize'); ?>
+						<?php echo $form->label('codemirror.tabSize', __('Tab size', $domain)); ?>
+						<?php echo $form->numberField('codemirror.tabSize'); ?>
 
 						<br>
 
-						<?php echo $form->label('editor.indentUnit', __('Indent unit', $domain)); ?>
-						<?php echo $form->numberField('editor.indentUnit'); ?>
+						<?php echo $form->label('codemirror.indentUnit', __('Indent unit', $domain)); ?>
+						<?php echo $form->numberField('codemirror.indentUnit'); ?>
 					</td>
 				</tr>
 				<tr data-editor-type="codemirror">
 					<th><?php _e('Appearance'); ?></th>
 					<td>
-						<?php echo $form->checkBoolean('editor.lineNumbers'); ?>
-						<?php echo $form->label('editor.lineNumbers', __('Show line numbers', $domain)); ?>
+						<?php echo $form->checkBoolean('codemirror.lineNumbers'); ?>
+						<?php echo $form->label('codemirror.lineNumbers', __('Show line numbers', $domain)); ?>
 
 						<br>
 
-						<?php echo $form->checkBoolean('editor.lineWrapping'); ?>
-						<?php echo $form->label('editor.lineWrapping', __('Line wrapping', $domain)); ?>
+						<?php echo $form->checkBoolean('codemirror.lineWrapping'); ?>
+						<?php echo $form->label('codemirror.lineWrapping', __('Line wrapping', $domain)); ?>
 					</td>
 				</tr>
 			</tbody>

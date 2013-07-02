@@ -104,7 +104,7 @@ class WP_Emmet {
 	 */
 	public function printStyles() {
 		$this->CodeMirror->enqueueStyle();
-		$this->CodeMirror->enqueueStyle($this->Options->get('editor.theme'));
+		$this->CodeMirror->enqueueStyle($this->Options->get('codemirror.theme'));
 		wp_enqueue_style(WP_EMMET_DOMAIN, self::assetURL('css/wp-emmet.css'));
 	}
 

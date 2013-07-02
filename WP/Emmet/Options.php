@@ -39,7 +39,7 @@ class WP_Emmet_Options {
 		return array_merge(array(
 			'use_codemirror' => '1',
 
-			'profile' => 'xhtml',
+			'profile' => 'html',
 
 			'textarea' => array(
 				'variables' => array(
@@ -53,8 +53,7 @@ class WP_Emmet_Options {
 				),
 			),
 
-			'editor' => array(
-				'profile' => 'html',
+			'codemirror' => array(
 				'theme' => 'default',
 
 				'indentWithTabs' => '1',
@@ -219,7 +218,7 @@ class WP_Emmet_Options {
 			$options['textarea'][$key] = $options['textarea'][$key] === '1';
 		}
 
-		unset($options['editor']);
+		unset($options['codemirror']);
 
 		return $options;
 	}
@@ -234,17 +233,17 @@ class WP_Emmet_Options {
 
 		// Boolean
 		foreach (array('indentWithTabs', 'smartIndent', 'lineWrapping' , 'lineNumbers') as $key) {
-			$options['editor'][$key] = $options['editor'][$key] === '1';
+			$options['codemirror'][$key] = $options['codemirror'][$key] === '1';
 		}
 
 		// Integer
 		foreach (array('indentUnit', 'tabSize') as $key) {
-			$options['editor'][$key] = (int)$options['editor'][$key];
+			$options['codemirror'][$key] = (int)$options['codemirror'][$key];
 		}
 
 		// Indent
-		if ($options['editor']['indentWithTabs']) {
-			$options['editor']['indentUnit'] = $options['editor']['tabSize'];
+		if ($options['codemirror']['indentWithTabs']) {
+			$options['codemirror']['indentUnit'] = $options['codemirror']['tabSize'];
 		}
 
 		// Shortcuts

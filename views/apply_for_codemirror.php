@@ -35,8 +35,12 @@
 				typeof wp.media !== 'undefined' &&
 				typeof wp.media.editor !== 'undefined') {
 			wp.media.editor.insert = function(h) {
-				var editor = $('#content').data(editorKey);
+				var cursor,
+					editor = $('#content').data(editorKey);
 				editor.doc.replaceSelection(h);
+				cursor = editor.doc.getCursor();
+				editor.doc.setCursor(cursor.line, cursor.ch + h.indexOf('>'));
+				editor.focus();
 			};
 		}
 
@@ -69,38 +73,53 @@
 
 		if (typeof QTags !== 'undefined') {
 			QTags.TagButton.prototype.callback = function(element, canvas, ed) {
-				var cursor,
+				var cursor, html,
 					editor = $(canvas).data(editorKey),
 					text = editor.doc.getSelection(),
 					startPos = text.indexOf(this.tagStart),
 					endPos = text.indexOf(this.tagEnd);
 
 				if (startPos !== -1 && endPos !== -1) {
-					text = text.substring(this.tagStart.length, endPos);
+					html = text.substring(this.tagStart.length, endPos);
 				} else {
-					text = this.tagStart + text + this.tagEnd;
+					html = this.tagStart + text + this.tagEnd;
 				}
 
-				editor.doc.replaceSelection(text);
+				editor.doc.replaceSelection(html);
 
-				cursor = editor.doc.getCursor();
-				editor.doc.setSelection(cursor, cursor);
+				if (text) {
+					cursor = editor.doc.getCursor('end');
+				} else {
+					cursor = editor.doc.getCursor('start');
+					cursor.ch += this.tagStart.length;
+				}
+
+				editor.doc.setCursor(cursor, cursor);
+				editor.focus();
 			};
 		}
 
 		if (typeof wpLink !== 'undefined') {
 			wpLink.htmlUpdate = function() {
-				var data = this.getAttrs(),
+				var cursor,
+					data = this.getAttrs(),
 					editor = $(this.textarea).data(editorKey),
-					attrs = '';
+					tagStart = '<a',
+					tagEnd = '</a>';
 
 				$.each(data, function(name, value) {
 					if (value) {
-						attrs += ' ' + name + '="' + value + '"';
+						tagStart += ' ' + name + '="' + value + '"';
 					}
 				});
 
-				editor.replaceSelection('<a' + attrs + '>' + editor.getSelection() + '</a>');
+				tagStart += '>';
+
+				editor.replaceSelection(tagStart + editor.getSelection() + tagEnd);
+
+				cursor = editor.doc.getCursor('start');
+				editor.doc.setCursor(cursor.line, cursor.ch + tagStart.length);
+				editor.focus();
 
 				this.close();
 			};

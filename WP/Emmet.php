@@ -107,18 +107,19 @@ class WP_Emmet {
 			$this->CodeMirror->enqueueStyle();
 			$this->CodeMirror->enqueueStyle($this->Options->get('codemirror.theme'));
 		}
-		wp_enqueue_style(WP_EMMET_DOMAIN, self::assetURL('css/wp-emmet.css'));
+		wp_enqueue_style('wp_emmet', self::assetURL('css/wp_emmet.css'));
 	}
 
 	/**
 	 * Enqueue scripts
 	 */
 	public function enqueueScripts() {
+		$type = $this->editorType();
 		if ($this->isCodeMirrorMode()) {
 			$this->CodeMirror->enqueueAllScripts();
 		}
-		$type = $this->editorType();
-		wp_enqueue_script(WP_EMMET_DOMAIN, self::assetURL("js/{$type}/emmet.js"), array('underscore'), false, true);
+		wp_enqueue_script('wp_wmmet', self::assetURL("js/wp_emmet.js"));
+		wp_enqueue_script('emmet', self::assetURL("js/{$type}/emmet.js"), array('underscore'), false, true);
 	}
 
 	/**

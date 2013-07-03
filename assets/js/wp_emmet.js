@@ -1,7 +1,20 @@
 !function($) {
-  var wp_emmet = window.wp_emmet = {
-    editorKey: 'wp-emmet-editor',
+  var editorID = 'wp-emmet-editor';
 
+  $.fn.codeMirror = function(options) {
+    return this.each(function() {
+      $.data(this, editorID, CodeMirror.fromTextArea(this, options));
+    });
+  };
+
+  $.fn.codeMirrorEditor = function(editor) {
+    if (editor) {
+      return $.data(this[0], editorID, editor);
+    }
+    return $.data(this[0], editorID);
+  };
+
+  var wp_emmet = window.wp_emmet = {
     extendForCodeMirror: function() {
       if (typeof wp !== 'undefined' &&
         typeof wp.media !== 'undefined' &&
@@ -23,11 +36,9 @@
     },
 
     extendMediaEditor: function() {
-      var editorKey = this.editorKey;
-
       wp.media.editor.insert = function(h) {
         var cursor,
-            editor = $('#content').data(editorKey);
+            editor = $('#content').codeMirrorEditor();
         editor.doc.replaceSelection(h);
         cursor = editor.doc.getCursor();
         editor.doc.setCursor(cursor.line, cursor.ch + h.indexOf('>'));
@@ -36,18 +47,16 @@
     },
 
     extendSwitchEditors: function() {
-      var editorKey = this.editorKey;
-
       switchEditors.switchto = function(el) {
         var params = el.id.split('-'),
             $textarea = $(tinymce.DOM.get(params[0])),
-            editor = $textarea.data(editorKey),
+            editor = $textarea.codeMirrorEditor(),
             isHTML = params[1] === 'html';
 
         if (!isHTML) {
           editor.toTextArea();
           editor.disabled = true;
-          $textarea.data(editorKey, editor);
+          $textarea.codeMirrorEditor(editor);
         }
 
         if (isHTML && !editor.disabled) {
@@ -59,17 +68,15 @@
         if (isHTML) {
           editor = CodeMirror.fromTextArea(editor.getTextArea(), editor.options);
           editor.disabled = false;
-          $textarea.data(editorKey, editor);
+          $textarea.codeMirrorEditor(editor);
         }
       };
     },
 
     extendQTags: function() {
-      var editorKey = this.editorKey;
-
       QTags.TagButton.prototype.callback = function(element, canvas, ed) {
         var cursor, html,
-            editor = $(canvas).data(editorKey),
+            editor = $(canvas).codeMirrorEditor(),
             text = editor.doc.getSelection(),
             startPos = text.indexOf(this.tagStart),
             endPos = text.indexOf(this.tagEnd);
@@ -95,12 +102,10 @@
     },
 
     extendWPLink: function() {
-      var editorKey = this.editorKey;
-
       wpLink.htmlUpdate = function() {
         var cursor,
             data = this.getAttrs(),
-            editor = $(this.textarea).data(editorKey),
+            editor = $(this.textarea).codeMirrorEditor(),
             tagStart = '<a',
             tagEnd = '</a>';
 

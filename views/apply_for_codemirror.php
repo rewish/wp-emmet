@@ -22,12 +22,11 @@
 <?php endif; ?>
 
 	$(function() {
-		$('textarea').each(function() {
-			var file = $(this).closest('form').find('input[name="file"]').val(),
-				editor = CodeMirror.fromTextArea(this, $.extend({}, options, {
-					mode: mimeTypes[file ? file.split('.').pop() : 'html']
-				}));
-			$(this).data(wp_emmet.editorKey, editor);
+		$('textarea:not(#wp_mce_fullscreen)').each(function() {
+			var file = $(this).closest('form').find('input[name="file"]').val();
+			$(this).codeMirror($.extend({}, options, {
+				mode: mimeTypes[file ? file.split('.').pop() : 'html']
+			}));
 		});
 
 		wp_emmet.extendForCodeMirror();

@@ -33,12 +33,23 @@
       if (typeof wpLink !== 'undefined') {
         this.extendWPLink();
       }
+
+      if (typeof fullscreen !== 'undefined') {
+        this.extendFullScreen();
+      }
     },
 
     extendMediaEditor: function() {
+      var originalInsert = wp.media.editor.insert;
+
       wp.media.editor.insert = function(h) {
         var cursor,
-            editor = $('#content').codeMirrorEditor();
+            editor = $('#' + wpActiveEditor).codeMirrorEditor();
+
+        if (!editor) {
+          return originalInsert.call(this, h);
+        }
+
         editor.doc.replaceSelection(h);
         cursor = editor.doc.getCursor();
         editor.doc.setCursor(cursor.line, cursor.ch + h.indexOf('>'));
@@ -49,23 +60,23 @@
     extendSwitchEditors: function() {
       switchEditors.switchto = function(el) {
         var params = el.id.split('-'),
+            $wrap = $('#wp-' + params[0] + '-wrap'),
             $textarea = $(tinymce.DOM.get(params[0])),
             editor = $textarea.codeMirrorEditor(),
-            isHTML = params[1] === 'html';
+            toHTML = params[1] === 'html',
+            fromHTML = $wrap.hasClass('html-active');
 
-        if (!isHTML) {
-          editor.toTextArea();
-          editor.disabled = true;
-          $textarea.codeMirrorEditor(editor);
+        if ((toHTML && fromHTML) || (!toHTML && !fromHTML)) {
+          return;
         }
 
-        if (isHTML && !editor.disabled) {
-          return;
+        if (!toHTML) {
+          editor.toTextArea();
         }
 
         this.go(params[0], params[1]);
 
-        if (isHTML) {
+        if (toHTML) {
           editor = CodeMirror.fromTextArea(editor.getTextArea(), editor.options);
           editor.disabled = false;
           $textarea.codeMirrorEditor(editor);
@@ -124,6 +135,57 @@
         editor.focus();
 
         this.close();
+      };
+    },
+
+    extendFullScreen: function() {
+      var activeEditor,
+          $fullScreen = $('#wp_mce_fullscreen'),
+          originalOff = fullscreen.off,
+          originalSwitchMode = fullscreen.switchmode;
+
+      fullscreen.pubsub.subscribe('showing', function() {
+        $fullScreen.codeMirror(activeEditor.options);
+      });
+
+      fullscreen.off = function() {
+        var $content = $('#' + fullscreen.settings.editor_id),
+            editor = $fullScreen.codeMirrorEditor();
+
+        originalOff.call(this);
+
+        if ($content.is(':visible')) {
+          $content.val(editor.doc.getValue());
+          $content.codeMirror(editor.options);
+        }
+
+        if (fullscreen.settings.mode === 'html') {
+          editor.toTextArea();
+        }
+      };
+
+      fullscreen.switchmode = function(to) {
+        if (fullscreen.settings.mode === to) {
+          return;
+        }
+
+        var editor = $fullScreen.codeMirrorEditor(),
+            mainEditor = $('#' + fullscreen.settings.editor_id).codeMirrorEditor();
+
+        if (to === 'html') {
+          originalSwitchMode.call(this, to);
+          $fullScreen.codeMirror(mainEditor.options);
+        } else {
+          editor && editor.toTextArea();
+          originalSwitchMode.call(this, to);
+        }
+      };
+
+      QTags.FullscreenButton.prototype.callback = function(e, c) {
+        if (!c.id) { return; }
+        activeEditor = $(c).codeMirrorEditor();
+        activeEditor.toTextArea();
+        fullscreen.on();
       };
     }
   };

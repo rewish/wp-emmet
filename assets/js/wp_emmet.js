@@ -3,7 +3,16 @@
 
   $.fn.codeMirror = function(options) {
     return this.each(function() {
-      $.data(this, editorID, CodeMirror.fromTextArea(this, options));
+      var hidden = $(this).is(':hidden'),
+          display = this.style.display,
+          editor = CodeMirror.fromTextArea(this, options);
+
+      if (hidden) {
+        editor.toTextArea();
+        this.style.display = display;
+      }
+
+      $.data(this, editorID, editor);
     });
   };
 

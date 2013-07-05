@@ -22,14 +22,16 @@
 <?php endif; ?>
 
 	$(function() {
-		$('textarea:not(#wp_mce_fullscreen)').each(function() {
-			var file = $(this).closest('form').find('input[name="file"]').val();
-			$(this).codeMirror($.extend({}, options, {
-				mode: mimeTypes[file ? file.split('.').pop() : 'html']
-			}));
-		});
+		setTimeout(function() {
+			$('textarea:not(#wp_mce_fullscreen)').each(function() {
+				var file = $(this).closest('form').find('input[name="file"]').val();
+				$(this).codeMirror($.extend({}, options, {
+					mode: mimeTypes[file ? file.split('.').pop() : 'html']
+				}));
+			});
 
-		wp_emmet.extendForCodeMirror();
+			wp_emmet.extendForCodeMirror();
+		}, 0);
 	});
 }(jQuery);
 </script>

@@ -148,13 +148,13 @@
     },
 
     extendFullScreen: function() {
-      var activeEditor,
-          $fullScreen = $('#wp_mce_fullscreen'),
+      var $fullScreen = $('#wp_mce_fullscreen'),
           originalOff = fullscreen.off,
           originalSwitchMode = fullscreen.switchmode;
 
       fullscreen.pubsub.subscribe('showing', function() {
-        $fullScreen.codeMirror(activeEditor.options);
+        var editor = $('#' + wpActiveEditor).codeMirrorEditor();
+        $fullScreen.codeMirror(editor.options);
       });
 
       fullscreen.off = function() {
@@ -192,8 +192,7 @@
 
       QTags.FullscreenButton.prototype.callback = function(e, c) {
         if (!c.id) { return; }
-        activeEditor = $(c).codeMirrorEditor();
-        activeEditor.toTextArea();
+        $(c).codeMirrorEditor().toTextArea();
         fullscreen.on();
       };
     }

@@ -57,8 +57,8 @@ class WP_Emmet_Options {
 				'theme' => 'default',
 
 				'indentWithTabs' => '1',
-				'indentUnit' => 2,
-				'tabSize' => 4,
+				'indentUnit' => '2',
+				'tabSize' => '4',
 				'smartIndent' => '1',
 
 				'lineWrapping' => '',
@@ -129,9 +129,10 @@ class WP_Emmet_Options {
 	 * Get option
 	 *
 	 * @param string $key
+	 * @param boolean $normalize
 	 */
-	public function get($key = null) {
-		$options = $this->normalizedOptions();
+	public function get($key = null, $normalize = false) {
+		$options = $normalize ? $this->normalizedOptions() : $this->options;
 
 		if (empty($key)) {
 			return $options;
@@ -158,7 +159,7 @@ class WP_Emmet_Options {
 	 * @param string $key
 	 */
 	public function toJSON($key = null) {
-		return json_encode($this->get($key));
+		return json_encode($this->get($key, true));
 	}
 
 	/**

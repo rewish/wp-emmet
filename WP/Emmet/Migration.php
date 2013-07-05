@@ -3,7 +3,7 @@ class WP_Emmet_Migration {
 	/**
 	 * Migration version name
 	 */
-	const VERSION_NAME = 'wp-emmet-migrations';
+	const VERSION_NAME = 'wp-emmet-migration-version';
 
 	/**
 	 * Migrate
@@ -11,25 +11,24 @@ class WP_Emmet_Migration {
 	 * @param WP_Emmet $context
 	 */
 	public static function migrate(WP_Emmet $context) {
-		$currentVersion = get_option(self::VERSION_NAME, 0);
 		$versions = self::getVersions();
-		$version = 0;
 
-		foreach ($versions as $info) {
-			if ($currentVersion >= $info['version']) {
-				continue;
+		$currentVersion = get_option(self::VERSION_NAME, 0);
+		$latestVersion = 0;
+
+		foreach ($versions as $version => $data) {
+			if ($currentVersion < $version) {
+				require_once $data['path'];
+				call_user_func(array($data['class'], 'migrate'), $context);
 			}
 
-			require_once $info['path'];
-			call_user_func(array($info['class'], 'migrate'), $context);
-
-			if ($version < $info['version']) {
-				$version = $info['version'];
+			if ($latestVersion < $version) {
+				$latestVersion = $version;
 			}
 		}
 
-		if ($version > $currentVersion) {
-			update_option(self::VERSION_NAME, $version);
+		if ($latestVersion > $currentVersion) {
+			update_option(self::VERSION_NAME, $latestVersion);
 		}
 	}
 
@@ -44,10 +43,9 @@ class WP_Emmet_Migration {
 
 		foreach ($files as $file) {
 			$version = basename($file, '.php');
-			$versions[] = array(
-				'version' => str_replace('_', '.', $version),
-				'path'    => $file,
-				'class'   => __CLASS__ . '_' . $version
+			$versions[str_replace('_', '.', $version)] = array(
+				'path'  => $file,
+				'class' => __CLASS__ . '_' . $version
 			);
 		}
 

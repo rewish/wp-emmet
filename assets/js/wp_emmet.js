@@ -23,32 +23,32 @@
     return $.data(this[0], editorID);
   };
 
-  var wp_emmet = window.wp_emmet = {
-    extendForCodeMirror: function() {
+  window.wp_emmet = {
+    adaptCodeMirror: function() {
       if (typeof wp !== 'undefined' &&
         typeof wp.media !== 'undefined' &&
         typeof wp.media.editor !== 'undefined') {
-        this.extendMediaEditor();
+        this.adaptMediaEditor();
       }
 
       if (typeof switchEditors !== 'undefined') {
-        this.extendSwitchEditors();
+        this.adaptSwitchEditors();
       }
 
       if (typeof QTags !== 'undefined') {
-        this.extendQTags();
+        this.adaptQTags();
       }
 
       if (typeof wpLink !== 'undefined') {
-        this.extendWPLink();
+        this.adaptWPLink();
       }
 
       if (typeof fullscreen !== 'undefined') {
-        this.extendFullScreen();
+        this.adaptFullScreen();
       }
     },
 
-    extendMediaEditor: function() {
+    adaptMediaEditor: function() {
       var originalInsert = wp.media.editor.insert;
 
       wp.media.editor.insert = function(h) {
@@ -66,7 +66,7 @@
       };
     },
 
-    extendSwitchEditors: function() {
+    adaptSwitchEditors: function() {
       switchEditors.switchto = function(el) {
         var params = el.id.split('-'),
             $wrap = $('#wp-' + params[0] + '-wrap'),
@@ -93,7 +93,7 @@
       };
     },
 
-    extendQTags: function() {
+    adaptQTags: function() {
       QTags.TagButton.prototype.callback = function(element, canvas, ed) {
         var cursor, html,
             editor = $(canvas).codeMirrorEditor(),
@@ -121,7 +121,7 @@
       };
     },
 
-    extendWPLink: function() {
+    adaptWPLink: function() {
       wpLink.htmlUpdate = function() {
         var cursor,
             data = this.getAttrs(),
@@ -147,7 +147,7 @@
       };
     },
 
-    extendFullScreen: function() {
+    adaptFullScreen: function() {
       var $fullScreen = $('#wp_mce_fullscreen'),
           originalOff = fullscreen.off,
           originalSwitchMode = fullscreen.switchmode;

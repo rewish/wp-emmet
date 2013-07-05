@@ -30,7 +30,7 @@
 				}));
 			});
 
-			wp_emmet.extendForCodeMirror();
+			wp_emmet.adaptCodeMirror();
 		}, 0);
 	});
 }(jQuery);

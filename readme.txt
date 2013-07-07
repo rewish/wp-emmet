@@ -2,7 +2,7 @@
 Contributors: rewish
 Tags: emmet, zen-coding, editor, post, plugin, coding
 Requires at least: 3.5
-Tested up to: 3.5.1
+Tested up to: 3.5.2
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -11,7 +11,11 @@ Emmet (ex-Zen Coding) for WordPress.
 
 == Description ==
 
-You can use the [Emmet](http://emmet.io/) in post editor.
+You can use the [Emmet](http://emmet.io/) in admin page.
+
+Support the Code coloring by CodeMirror.
+
+Try it!
 
 [Fork me on GitHub](https://github.com/rewish/wp-emmet) :)
 
@@ -26,6 +30,9 @@ e.g.
 3. `Emmet` is available in the post editor
 
 == Changelog ==
+
+= 0.2 =
+* Support the Code coloring by CodeMirror
 
 = 0.1.2 =
 * Fix "Add Media" button doesn't works

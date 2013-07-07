@@ -1,0 +1,39 @@
+[data-use-editor-type] [data-editor-type] {
+  display: none;
+}
+
+[data-use-editor-type="textarea"] [data-editor-type="textarea"],
+[data-use-editor-type="codemirror"] [data-editor-type="codemirror"] {
+  display: table-row;
+}
+
+#wp-emmet-codemirror-tabSize,
+#wp-emmet-codemirror-indentUnit {
+  width: 3em;
+}
+
+#template .CodeMirror,
+#template .CodeMirror div {
+  margin-right: 20px;
+}
+
+.CodeMirror {
+  height: auto;
+  min-height: 300px;
+  margin: -1px;
+  border: #CCC 1px solid;
+  font-family: Ricty, "VL Gothic", monospace, sans-serif;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: 1px;
+}
+
+.CodeMirror-scroll {
+  min-height: 300px;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
+.CodeMirror-linenumber {
+  padding: 0 10px;
+}

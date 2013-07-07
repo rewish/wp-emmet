@@ -5,7 +5,7 @@ msgstr ""
 "PO-Revision-Date: 2013-07-03 00:59+0900\n"
 "Last-Translator: rewish <rewish.org@gmail.com>\n"
 "Language-Team: \n"
-"Language: Japanese\n"
+"Language: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,179 +16,172 @@ msgstr ""
 
 #: views/options.php:12
 msgid "Editor"
-msgstr "エディタ"
+msgstr ""
 
 #: views/options.php:16
 msgid "Code Coloring"
-msgstr "コードカラーリング"
+msgstr ""
 
 #: views/options.php:19
 msgid "Enable"
-msgstr "有効化"
+msgstr ""
 
 #: views/options.php:23
 msgid "Profile"
-msgstr "プロファイル"
+msgstr ""
 
 #: views/options.php:28
 msgid "Use tab key"
-msgstr "Tabキーを使用"
+msgstr ""
 
 #: views/options.php:31 views/options.php:38
 msgid "Use"
-msgstr "使用"
+msgstr ""
 
 #: views/options.php:35
 msgid "Auto indent"
-msgstr "自動インデント"
+msgstr ""
 
 #: views/options.php:42
 msgid "Indent character"
-msgstr "タブ文字を使用"
+msgstr ""
 
 #: views/options.php:50
 msgid "Use hard tabs"
-msgstr "ハードタブを使用"
+msgstr ""
 
 #: views/options.php:55
 msgid "Theme"
-msgstr "テーマ"
+msgstr ""
 
 #: views/options.php:59
 msgid "Tabs and Indents"
-msgstr "タブとインデント"
+msgstr ""
 
 #: views/options.php:62
 msgid "Use tab character"
-msgstr "タブ文字を使用"
+msgstr ""
 
 #: views/options.php:67
 msgid "Smart indent"
-msgstr "スマートインデント"
+msgstr ""
 
 #: views/options.php:71
 msgid "Tab size"
-msgstr "タブサイズ"
+msgstr ""
 
 #: views/options.php:76
 msgid "Indent unit"
-msgstr "インデント幅"
+msgstr ""
 
 #: views/options.php:81
 msgid "Appearance"
-msgstr "外観"
+msgstr ""
 
 #: views/options.php:84
 msgid "Show line numbers"
-msgstr "行ナンバーを表示"
+msgstr ""
 
 #: views/options.php:89
 msgid "Line wrapping"
-msgstr "行を折り返す"
+msgstr ""
 
 #: views/options.php:95
 msgid "Shortcuts"
-msgstr "ショートカット"
+msgstr ""
 
 #: views/options.php:98
 msgid "Override shortcuts"
-msgstr "ショートカットを上書き"
+msgstr ""
 
 #: views/options.php:112
 msgid "Save option"
-msgstr "オプションを保存"
+msgstr ""
 
 #: views/options.php:116
 msgid "Test the Emmet"
-msgstr "Emmetをテスト"
+msgstr ""
 
 #: views/options.php:160
 msgid "Expand Abbreviation"
-msgstr "省略コードの展開"
+msgstr ""
 
 #: views/options.php:161
 msgid "Match Pair Outward"
-msgstr "タグの外側を選択"
+msgstr ""
 
 #: views/options.php:162
 msgid "Match Pair Inward"
-msgstr "タグの内側を選択"
+msgstr ""
 
 #: views/options.php:163
 msgid "Wrap with Abbreviation"
-msgstr "省略コードで包括"
+msgstr ""
 
 #: views/options.php:164
 msgid "Next Edit Point"
-msgstr "次の編集箇所へ"
+msgstr ""
 
 #: views/options.php:165
 msgid "Prev Edit Point"
-msgstr "前の編集箇所へ"
+msgstr ""
 
 #: views/options.php:166
 msgid "Select Line"
-msgstr "行を選択"
+msgstr ""
 
 #: views/options.php:167
 msgid "Merge Lines"
-msgstr "要素を1行に結合"
+msgstr ""
 
 #: views/options.php:168
 msgid "Toggle Comment"
-msgstr "コメントアウトの実行/解除"
+msgstr ""
 
 #: views/options.php:169
 msgid "Split/Join Tag"
-msgstr "タグの結合/分解"
+msgstr ""
 
 #: views/options.php:170
 msgid "Remove Tag"
-msgstr "タグを削除"
+msgstr ""
 
 #: views/options.php:171
 msgid "Evaluate Math Expression"
-msgstr "数式を評価"
+msgstr ""
 
 #: views/options.php:172
 msgid "Increment number by 1"
-msgstr "数値を1増加"
+msgstr ""
 
 #: views/options.php:173
 msgid "Decrement number by 1"
-msgstr "数値を1減少"
+msgstr ""
 
 #: views/options.php:174
 msgid "Increment number by 0.1"
-msgstr "数値を0.1増加"
+msgstr ""
 
 #: views/options.php:175
 msgid "Decrement number by 0.1"
-msgstr "数値を0.1減少"
+msgstr ""
 
 #: views/options.php:176
 msgid "Increment number by 10"
-msgstr "数値を10増加"
+msgstr ""
 
 #: views/options.php:177
 msgid "Decrement number by 10"
-msgstr "数値を10減少"
+msgstr ""
 
 #: views/options.php:178
 msgid "Select Next Item"
-msgstr "次の項目を選択"
+msgstr ""
 
 #: views/options.php:179
 msgid "Select Previous Item"
-msgstr "前の項目を選択"
+msgstr ""
 
 #: views/options.php:180
 msgid "Reflect CSS Value"
-msgstr "CSSの値を反映"
-
-#, fuzzy
-#~ msgid "Can be used in Post editor, Theme editor, Plugin editor"
-#~ msgstr "記事編集、テーマ編集、プラグイン編集で使用できます"
-
-#~ msgid "Options"
-#~ msgstr "オプション"
+msgstr ""

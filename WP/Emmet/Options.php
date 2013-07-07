@@ -16,30 +16,53 @@ class WP_Emmet_Options {
 	protected $options;
 
 	/**
+	 * Normalized options
+	 * @var array
+	 */
+	protected $normalizedOptions;
+
+	/**
 	 * Constructor
 	 *
 	 * @param string $name Optional, Name of option.
 	 */
 	public function __construct($name = WP_EMMET_DOMAIN) {
 		$this->name = $name;
-		$this->setupOptions();
+		$this->options = $this->load();
 		$this->addAdminMenu();
 	}
 
 	/**
-	 * Setup options
+	 * Load options
 	 */
-	public function setupOptions() {
-		$this->options = array_merge(array(
-			'variables' => array(
-				'indentation' => "\t"
+	public function load() {
+		return array_merge(array(
+			'use_codemirror' => '1',
+
+			'profile' => 'html',
+
+			'textarea' => array(
+				'variables' => array(
+					'indentation' => "\t"
+				),
+
+				'options' => array(
+					'syntax' => 'html',
+					'use_tab' => '1',
+					'pretty_break' => '1'
+				),
 			),
 
-			'options' => array(
-				'profile' => 'xhtml',
-				'syntax' => 'html',
-				'use_tab' => true,
-				'pretty_break' => true
+			'codemirror' => array(
+				'theme' => 'default',
+
+				'indentWithTabs' => '1',
+				'indentUnit' => '2',
+				'tabSize' => '4',
+				'smartIndent' => '1',
+
+				'lineWrapping' => '',
+				'lineNumbers' => '1'
 			),
 
 			'override_shortcuts' => '',
@@ -48,6 +71,7 @@ class WP_Emmet_Options {
 				'Expand Abbreviation'      => 'Meta+E',
 				'Match Pair Outward'       => 'Meta+D',
 				'Match Pair Inward'        => 'Shift+Meta+D',
+				'Matching Pair'            => 'Meta+T',
 				'Wrap with Abbreviation'   => 'Shift+Meta+A',
 				'Next Edit Point'          => 'Ctrl+Alt+Right',
 				'Prev Edit Point'          => 'Ctrl+Alt+Left',
@@ -65,25 +89,57 @@ class WP_Emmet_Options {
 				'Increment number by 10'  => 'Ctrl+Alt+Up',
 				'Decrement number by 10'  => 'Ctrl+Alt+Down',
 
-				'Select Next Item'     => 'Meta+.',
-				'Select Previous Item' => 'Meta+,',
-				'Reflect CSS Value'    => 'Meta+Shift+B'
+				'Select Next Item'     => 'Shift+Meta+.',
+				'Select Previous Item' => 'Shift+Meta+,',
+				'Reflect CSS Value'    => 'Meta+B'
 			)
 		), get_option($this->name, array()));
+	}
+
+	/**
+	 * Save options
+	 *
+	 * @param array $options
+	 */
+	public function save(Array $options) {
+		$this->options = $options;
+		update_option($this->name, $options);
+	}
+
+	/**
+	 * Set option
+	 *
+	 * @param string $key
+	 * @param mixed $value
+	 * @param boolean $andSave
+	 */
+	public function set($key, $value, $andSave = true) {
+		$k = explode('.', $key);
+		$o = $this->options;
+
+		switch (count($k)) {
+			case 1: $o[$k[0]] = $value; break;
+			case 2: $o[$k[0]][$k[1]] = $value; break;
+		}
+
+		$andSave && $this->save($o);
 	}
 
 	/**
 	 * Get option
 	 *
 	 * @param string $key
+	 * @param boolean $normalize
 	 */
-	public function get($key = null) {
+	public function get($key = null, $normalize = false) {
+		$options = $normalize ? $this->normalizedOptions() : $this->options;
+
 		if (empty($key)) {
-			return $this->options;
+			return $options;
 		}
 
 		$keys = explode('.', $key);
-		$option = $this->options;
+		$option = $options;
 
 		do {
 			$key = array_shift($keys);
@@ -102,8 +158,8 @@ class WP_Emmet_Options {
 	 *
 	 * @param string $key
 	 */
-	public function toJSON($key) {
-		return json_encode($this->get($key));
+	public function toJSON($key = null) {
+		return json_encode($this->get($key, true));
 	}
 
 	/**
@@ -124,7 +180,84 @@ class WP_Emmet_Options {
 	 * Page options
 	 */
 	public function pageOptions() {
+		global $wp_emmet;
 		$domain = WP_EMMET_DOMAIN;
+		$form = new WP_Emmet_FormHelper($this->name, $this->options);
+		$themes = $wp_emmet->CodeMirror->themes;
 		require_once WP_EMMET_VIEW_DIR . DIRECTORY_SEPARATOR . 'options.php';
+	}
+
+	/**
+	 * Normalized options
+	 *
+	 * @return array
+	 */
+	public function normalizedOptions() {
+		if ($this->normalizedOptions) {
+			return $this->normalizedOptions;
+		}
+
+		if ($this->options['use_codemirror']) {
+			$this->normalizedOptions = $this->normalizedOptionsForCodeMirror();
+		} else {
+			$this->normalizedOptions = $this->normalizedOptionsForTextarea();
+		}
+
+		return $this->normalizedOptions;
+	}
+
+	/**
+	 * Normalized options for Textarea
+	 *
+	 * @return array
+	 */
+	protected function normalizedOptionsForTextarea() {
+		$options = $this->options;
+
+		// Boolean
+		foreach (array('use_tab' , 'pretty_break') as $key) {
+			$options['textarea']['options'][$key] = $options['textarea']['options'][$key] === '1';
+		}
+
+		unset($options['codemirror']);
+
+		return $options;
+	}
+
+	/**
+	 * Normalized options for CodeMirror
+	 *
+	 * @return array
+	 */
+	protected function normalizedOptionsForCodeMirror() {
+		$options = $this->options;
+
+		// Boolean
+		foreach (array('indentWithTabs', 'smartIndent', 'lineWrapping' , 'lineNumbers') as $key) {
+			$options['codemirror'][$key] = $options['codemirror'][$key] === '1';
+		}
+
+		// Integer
+		foreach (array('indentUnit', 'tabSize') as $key) {
+			$options['codemirror'][$key] = (int)$options['codemirror'][$key];
+		}
+
+		// Indent
+		if ($options['codemirror']['indentWithTabs']) {
+			$options['codemirror']['indentUnit'] = $options['codemirror']['tabSize'];
+		}
+
+		// Shortcuts
+		foreach ($options['shortcuts'] as $type => $shortcutKey) {
+			$options['shortcuts'][$type] = str_replace(
+				array('+', 'Meta', 'Cmd-Shift'),
+				array('-', 'Cmd', 'Shift-Cmd'),
+				$shortcutKey
+			);
+		}
+
+		unset($options['textarea']);
+
+		return $options;
 	}
 }

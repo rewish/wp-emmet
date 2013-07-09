@@ -150,7 +150,8 @@
     adaptFullScreen: function() {
       var $fullScreen = $('#wp_mce_fullscreen'),
           originalOff = fullscreen.off,
-          originalSwitchMode = fullscreen.switchmode;
+          originalSwitchMode = fullscreen.switchmode,
+          originalSaveContent = fullscreen.savecontent;
 
       fullscreen.pubsub.subscribe('showing', function() {
         var editor = $('#' + wpActiveEditor).codeMirrorEditor();
@@ -188,6 +189,13 @@
           editor && editor.toTextArea();
           originalSwitchMode.call(this, to);
         }
+      };
+
+      fullscreen.savecontent = function() {
+        if (fullscreen.settings.mode === 'html') {
+          $fullScreen.codeMirrorEditor().save();
+        }
+        originalSaveContent.call(this);
       };
 
       QTags.FullscreenButton.prototype.callback = function(e, c) {

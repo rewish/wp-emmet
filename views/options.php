@@ -123,7 +123,7 @@ p*2>lorem
 
 &lt;style&gt;
 w100p
-m10p30e5x
+m10p30e5px
 &lt;/style&gt;</textarea>
 	</div>
 </div>

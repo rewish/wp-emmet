@@ -25,6 +25,10 @@ class WP_Emmet_CodeMirror {
 	 */
 	public function __construct($domain = 'codemirror') {
 		$this->domain = $domain;
+		add_action('init', array($this, 'init'));
+	}
+
+	public function init() {
 		$this->registerStyle('codemirror');
 		$this->registerThemes();
 		$this->registerScript('codemirror');

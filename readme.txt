@@ -27,6 +27,10 @@ e.g.
 
 == Changelog ==
 
+= 0.2.1 =
+* Fix localization doesn't works
+* Fix save on fullscreen mode doesn't works
+
 = 0.2 =
 * Support the Code coloring by [CodeMirror](http://codemirror.net/)
 

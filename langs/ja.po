@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP Emmet\n"
-"POT-Creation-Date: 2013-07-03 00:59+0900\n"
-"PO-Revision-Date: 2013-07-03 00:59+0900\n"
+"POT-Creation-Date: 2013-07-10 02:43+0900\n"
+"PO-Revision-Date: 2013-07-10 02:43+0900\n"
 "Last-Translator: rewish <rewish.org@gmail.com>\n"
 "Language-Team: \n"
 "Language: Japanese\n"
@@ -99,96 +99,98 @@ msgid "Save option"
 msgstr "オプションを保存"
 
 #: views/options.php:116
+msgid "Bug reports"
+msgstr "バグの報告"
+
+#: views/options.php:117
+#, php-format
+msgid "Please create an issue on %s."
+msgstr "%sから報告してください。"
+
+#: views/options.php:119
 msgid "Test the Emmet"
 msgstr "Emmetをテスト"
 
-#: views/options.php:160
+#: views/options.php:163
 msgid "Expand Abbreviation"
 msgstr "省略コードの展開"
 
-#: views/options.php:161
+#: views/options.php:164
 msgid "Match Pair Outward"
 msgstr "タグの外側を選択"
 
-#: views/options.php:162
+#: views/options.php:165
 msgid "Match Pair Inward"
 msgstr "タグの内側を選択"
 
-#: views/options.php:163
+#: views/options.php:166
 msgid "Wrap with Abbreviation"
 msgstr "省略コードで包括"
 
-#: views/options.php:164
+#: views/options.php:167
 msgid "Next Edit Point"
 msgstr "次の編集箇所へ"
 
-#: views/options.php:165
+#: views/options.php:168
 msgid "Prev Edit Point"
 msgstr "前の編集箇所へ"
 
-#: views/options.php:166
+#: views/options.php:169
 msgid "Select Line"
 msgstr "行を選択"
 
-#: views/options.php:167
+#: views/options.php:170
 msgid "Merge Lines"
 msgstr "要素を1行に結合"
 
-#: views/options.php:168
+#: views/options.php:171
 msgid "Toggle Comment"
 msgstr "コメントアウトの実行/解除"
 
-#: views/options.php:169
+#: views/options.php:172
 msgid "Split/Join Tag"
 msgstr "タグの結合/分解"
 
-#: views/options.php:170
+#: views/options.php:173
 msgid "Remove Tag"
 msgstr "タグを削除"
 
-#: views/options.php:171
+#: views/options.php:174
 msgid "Evaluate Math Expression"
 msgstr "数式を評価"
 
-#: views/options.php:172
+#: views/options.php:175
 msgid "Increment number by 1"
 msgstr "数値を1増加"
 
-#: views/options.php:173
+#: views/options.php:176
 msgid "Decrement number by 1"
 msgstr "数値を1減少"
 
-#: views/options.php:174
+#: views/options.php:177
 msgid "Increment number by 0.1"
 msgstr "数値を0.1増加"
 
-#: views/options.php:175
+#: views/options.php:178
 msgid "Decrement number by 0.1"
 msgstr "数値を0.1減少"
 
-#: views/options.php:176
+#: views/options.php:179
 msgid "Increment number by 10"
 msgstr "数値を10増加"
 
-#: views/options.php:177
+#: views/options.php:180
 msgid "Decrement number by 10"
 msgstr "数値を10減少"
 
-#: views/options.php:178
+#: views/options.php:181
 msgid "Select Next Item"
 msgstr "次の項目を選択"
 
-#: views/options.php:179
+#: views/options.php:182
 msgid "Select Previous Item"
 msgstr "前の項目を選択"
 
-#: views/options.php:180
+#: views/options.php:183
 msgid "Reflect CSS Value"
 msgstr "CSSの値を反映"
-
-#, fuzzy
-#~ msgid "Can be used in Post editor, Theme editor, Plugin editor"
-#~ msgstr "記事編集、テーマ編集、プラグイン編集で使用できます"
-
-#~ msgid "Options"
-#~ msgstr "オプション"

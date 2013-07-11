@@ -121,7 +121,7 @@ class WP_Emmet {
 	 * Apply scripts
 	 */
 	public function applyScripts() {
-		$shortcuts = $this->Options->get('shortcuts');
+		$shortcuts = $this->Options->get('shortcuts', true);
 		$type = $this->editorType();
 		require_once WP_EMMET_VIEW_DIR . DIRECTORY_SEPARATOR . "apply_for_{$type}.php";
 	}

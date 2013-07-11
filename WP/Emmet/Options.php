@@ -37,7 +37,7 @@ class WP_Emmet_Options {
 	 */
 	public function load() {
 		return array_merge(array(
-			'use_codemirror' => '1',
+			'use_codemirror' => '0',
 
 			'profile' => 'html',
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP Emmet\n"
-"POT-Creation-Date: 2013-07-10 02:43+0900\n"
-"PO-Revision-Date: 2013-07-10 02:43+0900\n"
+"POT-Creation-Date: 2013-07-18 23:05+0900\n"
+"PO-Revision-Date: 2013-07-18 23:08+0900\n"
 "Last-Translator: rewish <rewish.org@gmail.com>\n"
 "Language-Team: \n"
 "Language: Japanese\n"
@@ -16,7 +16,7 @@ msgstr ""
 
 #: views/options.php:12
 msgid "Editor"
-msgstr "エディタ"
+msgstr "エディター"
 
 #: views/options.php:16
 msgid "Code Coloring"
@@ -86,111 +86,115 @@ msgstr "行ナンバーを表示"
 msgid "Line wrapping"
 msgstr "行を折り返す"
 
-#: views/options.php:95
+#: views/options.php:93
+msgid "Editor Style"
+msgstr "エディタースタイル"
+
+#: views/options.php:103
 msgid "Shortcuts"
 msgstr "ショートカット"
 
-#: views/options.php:98
+#: views/options.php:106
 msgid "Override shortcuts"
 msgstr "ショートカットを上書き"
 
-#: views/options.php:112
+#: views/options.php:120
 msgid "Save option"
 msgstr "オプションを保存"
 
-#: views/options.php:116
+#: views/options.php:124
 msgid "Bug reports"
 msgstr "バグの報告"
 
-#: views/options.php:117
+#: views/options.php:125
 #, php-format
 msgid "Please create an issue on %s."
 msgstr "%sから報告してください。"
 
-#: views/options.php:119
+#: views/options.php:127
 msgid "Test the Emmet"
 msgstr "Emmetをテスト"
 
-#: views/options.php:163
+#: views/options.php:171
 msgid "Expand Abbreviation"
 msgstr "省略コードの展開"
 
-#: views/options.php:164
+#: views/options.php:172
 msgid "Match Pair Outward"
 msgstr "タグの外側を選択"
 
-#: views/options.php:165
+#: views/options.php:173
 msgid "Match Pair Inward"
 msgstr "タグの内側を選択"
 
-#: views/options.php:166
+#: views/options.php:174
 msgid "Wrap with Abbreviation"
 msgstr "省略コードで包括"
 
-#: views/options.php:167
+#: views/options.php:175
 msgid "Next Edit Point"
 msgstr "次の編集箇所へ"
 
-#: views/options.php:168
+#: views/options.php:176
 msgid "Prev Edit Point"
 msgstr "前の編集箇所へ"
 
-#: views/options.php:169
+#: views/options.php:177
 msgid "Select Line"
 msgstr "行を選択"
 
-#: views/options.php:170
+#: views/options.php:178
 msgid "Merge Lines"
 msgstr "要素を1行に結合"
 
-#: views/options.php:171
+#: views/options.php:179
 msgid "Toggle Comment"
 msgstr "コメントアウトの実行/解除"
 
-#: views/options.php:172
+#: views/options.php:180
 msgid "Split/Join Tag"
 msgstr "タグの結合/分解"
 
-#: views/options.php:173
+#: views/options.php:181
 msgid "Remove Tag"
 msgstr "タグを削除"
 
-#: views/options.php:174
+#: views/options.php:182
 msgid "Evaluate Math Expression"
 msgstr "数式を評価"
 
-#: views/options.php:175
+#: views/options.php:183
 msgid "Increment number by 1"
 msgstr "数値を1増加"
 
-#: views/options.php:176
+#: views/options.php:184
 msgid "Decrement number by 1"
 msgstr "数値を1減少"
 
-#: views/options.php:177
+#: views/options.php:185
 msgid "Increment number by 0.1"
 msgstr "数値を0.1増加"
 
-#: views/options.php:178
+#: views/options.php:186
 msgid "Decrement number by 0.1"
 msgstr "数値を0.1減少"
 
-#: views/options.php:179
+#: views/options.php:187
 msgid "Increment number by 10"
 msgstr "数値を10増加"
 
-#: views/options.php:180
+#: views/options.php:188
 msgid "Decrement number by 10"
 msgstr "数値を10減少"
 
-#: views/options.php:181
+#: views/options.php:189
 msgid "Select Next Item"
 msgstr "次の項目を選択"
 
-#: views/options.php:182
+#: views/options.php:190
 msgid "Select Previous Item"
 msgstr "前の項目を選択"
 
-#: views/options.php:183
+#: views/options.php:191
 msgid "Reflect CSS Value"
 msgstr "CSSの値を反映"

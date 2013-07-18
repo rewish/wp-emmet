@@ -90,7 +90,7 @@
 					</td>
 				</tr>
 				<tr data-editor-type="codemirror">
-					<th><?php _e('Editor Style'); ?></th>
+					<th><?php _e('Editor Style', $domain); ?></th>
 					<td><?php echo $form->textarea('codemirror_style', array(
 						'data-cm-mode' => 'css',
 						'data-cm-max-width' => '600px',

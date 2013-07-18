@@ -89,6 +89,14 @@
 						<?php echo $form->label('codemirror.lineWrapping', __('Line wrapping', $domain)); ?>
 					</td>
 				</tr>
+				<tr data-editor-type="codemirror">
+					<th><?php _e('Editor Style'); ?></th>
+					<td><?php echo $form->textarea('codemirror_style', array(
+						'data-cm-mode' => 'css',
+						'data-cm-max-width' => '600px',
+						'data-cm-min-height' => '150px'
+					)); ?></td>
+				</tr>
 			</tbody>
 		</table>
 

@@ -1,3 +1,8 @@
+<style>
+.CodeMirror {
+<?php echo $this->Options->get('codemirror_style') . PHP_EOL; ?>
+}
+</style>
 <script>
 !function($) {
 	var options = $.extend(<?php echo $this->Options->toJSON('codemirror'); ?>, {
@@ -24,10 +29,23 @@
 	$(function() {
 		setTimeout(function() {
 			$('textarea:not(#wp_mce_fullscreen)').each(function() {
-				var file = $(this).closest('form').find('input[name="file"]').val();
-				$(this).codeMirror($.extend({}, options, {
-					mode: mimeTypes[file ? file.split('.').pop() : 'html']
+				var $textarea = $(this),
+					file = $textarea.closest('form').find('input[name="file"]').val(),
+					mode = $textarea.attr('data-cm-mode'),
+					maxWidth = $textarea.attr('data-cm-max-width'),
+					minHeight = $textarea.attr('data-cm-min-height');
+
+				$textarea.codeMirror($.extend({}, options, {
+					mode: mode || mimeTypes[file ? file.split('.').pop() : 'html']
 				}));
+
+				if (maxWidth) {
+					$($textarea.codeMirrorEditor().display.wrapper).css({maxWidth: maxWidth});
+				}
+
+				if (minHeight) {
+					$($textarea.codeMirrorEditor().display.scroller).css({minHeight: minHeight});
+				}
 			});
 
 			wp_emmet.adaptCodeMirror();

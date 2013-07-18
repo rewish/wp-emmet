@@ -221,4 +221,16 @@ class WP_Emmet_FormHelper {
 
 		return sprintf('<select %s>%s</select>', $attrs, implode('', $optionTags));
 	}
+
+	/**
+	 * Textarea
+	 *
+	 * @param string $name
+	 * @param array $attributes
+	 * @return string
+	 */
+	public function textarea($name, Array $attributes = array()) {
+		$attrs = $this->attributes($attributes + array('name' => $this->name($name)));
+		return sprintf('<textarea %s>%s</textarea>', $attrs, $this->value($name));
+	}
 }

@@ -65,6 +65,8 @@ class WP_Emmet_Options {
 				'lineNumbers' => '1'
 			),
 
+			'codemirror_style' => "font-family: Ricty, \"VL Gothic\", monospace, sans-serif;\nfont-size: 16px;\nline-height: 1.3;\nletter-spacing: 1px;",
+
 			'override_shortcuts' => '',
 
 			'shortcuts' => array(

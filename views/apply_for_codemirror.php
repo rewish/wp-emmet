@@ -4,7 +4,17 @@
 }
 </style>
 <script>
-!function($) {
+<?php if ($this->Options->get('override_shortcuts')): ?>
+var emmetKeymap = {
+<?php foreach ($shortcuts as $label => $keystroke): ?>
+	'<?php echo $keystroke; ?>': '<?php echo str_replace(array(' ', '/', '.'), array('_', '_', ''), strtolower($label)); ?>',
+<?php endforeach; ?>
+	Tab: 'expand_abbreviation_with_tab',
+	Enter: 'insert_formatted_line_break_only'
+};
+<?php endif; ?>
+
+jQuery(function($) {
 	var options = $.extend(<?php echo $this->Options->toJSON('codemirror'); ?>, {
 			profile: '<?php echo $this->Options->get('profile'); ?>'
 		}),
@@ -16,40 +26,28 @@
 			json: 'application/json'
 		};
 
-<?php if ($this->Options->get('override_shortcuts')): ?>
-	window.emmetKeymap = {
-<?php foreach ($shortcuts as $label => $keystroke): ?>
-		'<?php echo $keystroke; ?>': '<?php echo str_replace(array(' ', '/', '.'), array('_', '_', ''), strtolower($label)); ?>',
-<?php endforeach; ?>
-		Tab: 'expand_abbreviation_with_tab',
-		Enter: 'insert_formatted_line_break_only'
-	};
-<?php endif; ?>
+	setTimeout(function() {
+		$('textarea:not(#wp_mce_fullscreen)').each(function() {
+			var $textarea = $(this),
+				file = $textarea.closest('form').find('input[name="file"]').val(),
+				mode = $textarea.attr('data-cm-mode'),
+				maxWidth = $textarea.attr('data-cm-max-width'),
+				minHeight = $textarea.attr('data-cm-min-height');
 
-	$(function() {
-		setTimeout(function() {
-			$('textarea:not(#wp_mce_fullscreen)').each(function() {
-				var $textarea = $(this),
-					file = $textarea.closest('form').find('input[name="file"]').val(),
-					mode = $textarea.attr('data-cm-mode'),
-					maxWidth = $textarea.attr('data-cm-max-width'),
-					minHeight = $textarea.attr('data-cm-min-height');
+			$textarea.codeMirror($.extend({}, options, {
+				mode: mode || mimeTypes[file ? file.split('.').pop() : 'html']
+			}));
 
-				$textarea.codeMirror($.extend({}, options, {
-					mode: mode || mimeTypes[file ? file.split('.').pop() : 'html']
-				}));
+			if (maxWidth) {
+				$($textarea.codeMirrorEditor().display.wrapper).css({maxWidth: maxWidth});
+			}
 
-				if (maxWidth) {
-					$($textarea.codeMirrorEditor().display.wrapper).css({maxWidth: maxWidth});
-				}
+			if (minHeight) {
+				$($textarea.codeMirrorEditor().display.scroller).css({minHeight: minHeight});
+			}
+		});
 
-				if (minHeight) {
-					$($textarea.codeMirrorEditor().display.scroller).css({minHeight: minHeight});
-				}
-			});
-
-			wp_emmet.adaptCodeMirror();
-		}, 0);
-	});
-}(jQuery);
+		wp_emmet.adaptCodeMirror();
+	}, 0);
+});
 </script>

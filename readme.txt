@@ -27,6 +27,9 @@ e.g.
 
 == Changelog ==
 
+= 0.2.3 =
+* Add option of editor style
+
 = 0.2.2 =
 * Fix a bug of shortcuts that occurs when `enable` the Code coloring
 

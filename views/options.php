@@ -102,10 +102,11 @@
 
 		<h3><?php _e('Shortcuts', $domain); ?></h3>
 		<p>
-			<input type="hidden" name="<?php echo $this->name; ?>[override_shortcuts]" value=""><input type="checkbox" id="<?php echo $this->name; ?>_override_shortcuts" name="<?php echo $this->name; ?>[override_shortcuts]" value="1"<?php if ($this->options['override_shortcuts']) echo ' checked="checked"'; ?>>
+			<input type="hidden" name="<?php echo $this->name; ?>[override_shortcuts]" value="">
+			<input type="checkbox" data-wp-emmet-toggle="shortcuts" id="<?php echo $this->name; ?>_override_shortcuts" name="<?php echo $this->name; ?>[override_shortcuts]" value="1"<?php if ($this->options['override_shortcuts']) echo ' checked="checked"'; ?>>
 			<label for="<?php echo $this->name; ?>_override_shortcuts"><?php _e('Override shortcuts', $domain); ?></label>
 		<p>
-		<table class="form-table <?php echo $this->name; ?>_shortcuts"<?php if (!$this->options['override_shortcuts']) echo ' style="display: none"'; ?>>
+		<table data-wp-emmet-toggle-name="shortcuts" class="form-table <?php echo $this->name; ?>_shortcuts"<?php if (!$this->options['override_shortcuts']) echo ' style="display: none"'; ?>>
 			<tbody>
 <?php		foreach ($this->options['shortcuts'] as $label => $keystroke): ?>
 				<tr>
@@ -141,8 +142,6 @@ m10p30e5px
 
 <script>
 jQuery(function($) {
-	var $shortcuts = $('.<?php echo $this->name; ?>_shortcuts');
-
 	$('#<?php echo $form->id('use_codemirror'); ?>').on('click', function() {
 		$('[data-use-editor-type]').attr('data-use-editor-type', this.checked ? 'codemirror' : 'textarea');
 	});
@@ -156,12 +155,10 @@ jQuery(function($) {
 		}
 	});
 
-	$('#<?php echo $this->name; ?>_override_shortcuts').on('click', function() {
-		if ($(this).attr('checked')) {
-			$shortcuts.show();
-		} else {
-			$shortcuts.hide();
-		}
+	$(document).on('click', '[data-wp-emmet-toggle]', function() {
+		var $el = $(this),
+			selector = '[data-wp-emmet-toggle-name="' + $el.attr('data-wp-emmet-toggle') + '"]';
+		$(selector).toggle($el.prop('checked'));
 	});
 });
 </script>

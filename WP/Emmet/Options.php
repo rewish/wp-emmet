@@ -132,6 +132,7 @@ class WP_Emmet_Options {
 	 *
 	 * @param string $key
 	 * @param boolean $normalize
+	 * @return mixed
 	 */
 	public function get($key = null, $normalize = false) {
 		$options = $normalize ? $this->normalizedOptions() : $this->options;
@@ -159,6 +160,7 @@ class WP_Emmet_Options {
 	 * Option to JSON
 	 *
 	 * @param string $key
+	 * @return string
 	 */
 	public function toJSON($key = null) {
 		return json_encode($this->get($key, true));

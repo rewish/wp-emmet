@@ -16,8 +16,9 @@ class WP_Emmet_FormHelper {
 	 * Constructor
 	 *
 	 * @param string $name
+	 * @param array $values
 	 */
-	public function __construct($name, $values) {
+	public function __construct($name, Array $values) {
 		$this->name = $name;
 		$this->values = $values;
 	}
@@ -187,6 +188,7 @@ class WP_Emmet_FormHelper {
 	 *
 	 * @param string $label
 	 * @param string $value
+	 * @param array $attributes
 	 * @return string
 	 */
 	public function option($label, $value, Array $attributes = array()) {

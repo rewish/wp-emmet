@@ -28,11 +28,14 @@ class WP_Emmet_CodeMirror {
 		add_action('init', array($this, 'init'));
 	}
 
+	/**
+	 * Initialization
+	 */
 	public function init() {
 		$this->registerStyle('codemirror');
-		$this->registerThemes();
+		$this->_registerThemes();
 		$this->registerScript('codemirror');
-		$this->registerModes();
+		$this->_registerModes();
 	}
 
 	/**
@@ -43,7 +46,7 @@ class WP_Emmet_CodeMirror {
 	 */
 	public function registerStyle($fileName, $theme = null) {
 		$domain = $theme ? "{$this->domain}-{$theme}" : $this->domain;
-		WP_Emmet::registerStyle($domain, $this->styleFileURL($fileName));
+		WP_Emmet::registerStyle($domain, $this->_styleFileURL($fileName));
 	}
 
 	/**
@@ -54,7 +57,7 @@ class WP_Emmet_CodeMirror {
 	 */
 	public function registerScript($fileName, $mode = null) {
 		$domain = $mode ? "{$this->domain}-{$mode}" : $this->domain;
-		WP_Emmet::registerScript($domain, $this->scriptFileURL($fileName));
+		WP_Emmet::registerScript($domain, $this->_scriptFileURL($fileName));
 	}
 
 	/**
@@ -89,7 +92,7 @@ class WP_Emmet_CodeMirror {
 	 * @param $name
 	 * @return string
 	 */
-	protected function styleFileURL($name) {
+	protected function _styleFileURL($name) {
 		return WP_Emmet::assetURL("css/codemirror/{$name}.css");
 	}
 
@@ -99,14 +102,14 @@ class WP_Emmet_CodeMirror {
 	 * @param $name
 	 * @return string
 	 */
-	protected function scriptFileURL($name) {
+	protected function _scriptFileURL($name) {
 		return WP_Emmet::assetURL("js/codemirror/{$name}.js");
 	}
 
 	/**
 	 * Register themes
 	 */
-	protected function registerThemes() {
+	protected function _registerThemes() {
 		$this->themes = array('default' => 'default');
 		$themes = glob(WP_Emmet::assetPath('css/codemirror/theme/*.css'));
 
@@ -120,7 +123,7 @@ class WP_Emmet_CodeMirror {
 	/**
 	 * Register modes
 	 */
-	protected function registerModes() {
+	protected function _registerModes() {
 		$modes = glob(WP_Emmet::assetPath('js/codemirror/mode/*.js'));
 
 		foreach ($modes as $mode) {

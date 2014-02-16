@@ -131,7 +131,7 @@ class WP_Emmet {
 	 *
 	 * @return string
 	 */
-	protected function editorType() {
+	public function editorType() {
 		return $this->isCodeMirrorMode() ? 'codemirror' : 'textarea';
 	}
 
@@ -140,7 +140,7 @@ class WP_Emmet {
 	 *
 	 * @return bool
 	 */
-	protected function isCodeMirrorMode() {
+	public function isCodeMirrorMode() {
 		return $this->Options->get('use_codemirror') === '1';
 	}
 }

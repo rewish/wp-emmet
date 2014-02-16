@@ -24,49 +24,49 @@ class WP_Emmet_FormHelper {
 	}
 
 	/**
-	 * Value to Array
+	 * Arrayize
 	 *
 	 * @param string|array $value
 	 * @param string $delimiter
 	 * @return array
 	 */
-	public function toArray($value, $delimiter = '.') {
+	public function arrayize($value, $delimiter = '.') {
 		return is_array($value) ? $value : explode($delimiter, $value);
 	}
 
 	/**
-	 * ID attributes
+	 * ID attribute
 	 *
 	 * @param string $name
 	 * @return string
 	 */
 	public function id($name) {
-		$arr = $this->toArray($name);
+		$arr = $this->arrayize($name);
 		array_unshift($arr, $this->name);
 		return implode('-', $arr);
 	}
 
 	/**
-	 * Name attributes
+	 * Name attribute
 	 *
 	 * @param string $name
 	 * @return string
 	 */
 	public function name($name) {
-		return $this->name . '[' . implode('][', $this->toArray($name)) . ']';
+		return $this->name . '[' . implode('][', $this->arrayize($name)) . ']';
 	}
 
 	/**
-	 * Value attributes
+	 * Value attribute
 	 *
 	 * @param string $name
 	 * @return array
 	 */
 	public function value($name) {
-		$names = $this->toArray($name);
+		$names = $this->arrayize($name);
 		$value = $this->values;
 
-		while(count($names) > 0) {
+		while (count($names) > 0) {
 			$value = $value[array_shift($names)];
 		}
 
@@ -211,7 +211,7 @@ class WP_Emmet_FormHelper {
 	 */
 	public function select($name, $values, Array $attributes = array()) {
 		$attrs = $this->attributes($attributes + array('name' => $this->name($name)));
-		$values = $this->toArray($values, ',');
+		$values = $this->arrayize($values, ',');
 		$currentValue = $this->value($name);
 		$optionTags = array();
 

@@ -55,6 +55,7 @@
 					<th><?php _e('Theme', $domain); ?></th>
 					<td><?php echo $form->select('codemirror.theme', $themes); ?></td>
 				</tr>
+
 				<tr data-editor-type="codemirror">
 					<th><?php _e('Tabs and Indents', $domain); ?></th>
 					<td>
@@ -77,6 +78,7 @@
 						<?php echo $form->numberField('codemirror.indentUnit'); ?>
 					</td>
 				</tr>
+
 				<tr data-editor-type="codemirror">
 					<th><?php _e('Appearance'); ?></th>
 					<td>
@@ -89,6 +91,7 @@
 						<?php echo $form->label('codemirror.lineWrapping', __('Line wrapping', $domain)); ?>
 					</td>
 				</tr>
+
 				<tr data-editor-type="codemirror">
 					<th><?php _e('Editor Style', $domain); ?></th>
 					<td><?php echo $form->textarea('codemirror_style', array(
@@ -96,6 +99,28 @@
 						'data-cm-max-width' => '600px',
 						'data-cm-min-height' => '150px'
 					)); ?></td>
+				</tr>
+
+				<tr>
+					<th><?php _e('Scope', $domain); ?></th>
+					<td>
+						<fieldset>
+							<label>
+								<?php echo $form->checkBoolean('scope.post'); ?>
+								<?php _e('Post Editor', $domain); ?>
+							</label>
+							<br>
+							<label>
+								<?php echo $form->checkBoolean('scope.theme-editor'); ?>
+								<?php _e('Theme Editor', $domain); ?>
+							</label>
+							<br>
+							<label>
+								<?php echo $form->checkBoolean('scope.plugin-editor'); ?>
+								<?php _e('Plugin Editor', $domain); ?>
+							</label>
+						</fieldset>
+					</td>
 				</tr>
 			</tbody>
 		</table>

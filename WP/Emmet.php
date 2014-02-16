@@ -82,16 +82,31 @@ class WP_Emmet {
 
 		WP_Emmet_Migration::migrate($this);
 
-		$this->registerHooks();
+		add_action('current_screen', array($this, 'registerHooks'));
 	}
 
 	/**
 	 * Register hooks
 	 */
 	public function registerHooks() {
+		if (!$this->isInScope()) {
+			return;
+		}
+
 		add_action('admin_print_styles', array($this, 'printStyles'));
 		add_action('admin_enqueue_scripts', array($this, 'enqueueScripts'));
 		add_action('admin_print_footer_scripts', array($this, 'applyScripts'), 1);
+	}
+
+	/**
+	 * Page is in scope?
+	 *
+	 * @return boolean
+	 */
+	public function isInScope() {
+		$screen = get_current_screen();
+		return $screen->base === 'settings_page_' . WP_EMMET_DOMAIN
+			|| $this->Options->get("scope.{$screen->base}") === '1';
 	}
 
 	/**

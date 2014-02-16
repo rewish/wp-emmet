@@ -67,8 +67,13 @@ class WP_Emmet_Options {
 
 			'codemirror_style' => "font-family: Ricty, \"VL Gothic\", monospace, sans-serif;\nfont-size: 16px;\nline-height: 1.3;\nletter-spacing: 1px;",
 
-			'override_shortcuts' => '',
+			'scope' => array(
+				'post' => '1',
+				'theme-editor' => '1',
+				'plugin-editor' => '1'
+			),
 
+			'override_shortcuts' => '',
 			'shortcuts' => array(
 				'Expand Abbreviation'      => 'Meta+E',
 				'Match Pair Outward'       => 'Meta+D',
@@ -132,6 +137,7 @@ class WP_Emmet_Options {
 	 *
 	 * @param string $key
 	 * @param boolean $normalize
+	 * @return mixed
 	 */
 	public function get($key = null, $normalize = false) {
 		$options = $normalize ? $this->normalizedOptions() : $this->options;
@@ -159,6 +165,7 @@ class WP_Emmet_Options {
 	 * Option to JSON
 	 *
 	 * @param string $key
+	 * @return string
 	 */
 	public function toJSON($key = null) {
 		return json_encode($this->get($key, true));

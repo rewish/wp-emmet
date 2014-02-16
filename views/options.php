@@ -55,6 +55,7 @@
 					<th><?php _e('Theme', $domain); ?></th>
 					<td><?php echo $form->select('codemirror.theme', $themes); ?></td>
 				</tr>
+
 				<tr data-editor-type="codemirror">
 					<th><?php _e('Tabs and Indents', $domain); ?></th>
 					<td>
@@ -77,6 +78,7 @@
 						<?php echo $form->numberField('codemirror.indentUnit'); ?>
 					</td>
 				</tr>
+
 				<tr data-editor-type="codemirror">
 					<th><?php _e('Appearance'); ?></th>
 					<td>
@@ -89,6 +91,7 @@
 						<?php echo $form->label('codemirror.lineWrapping', __('Line wrapping', $domain)); ?>
 					</td>
 				</tr>
+
 				<tr data-editor-type="codemirror">
 					<th><?php _e('Editor Style', $domain); ?></th>
 					<td><?php echo $form->textarea('codemirror_style', array(
@@ -97,15 +100,38 @@
 						'data-cm-min-height' => '150px'
 					)); ?></td>
 				</tr>
+
+				<tr>
+					<th><?php _e('Scope', $domain); ?></th>
+					<td>
+						<fieldset>
+							<label>
+								<?php echo $form->checkBoolean('scope.post'); ?>
+								<?php _e('Post Editor', $domain); ?>
+							</label>
+							<br>
+							<label>
+								<?php echo $form->checkBoolean('scope.theme-editor'); ?>
+								<?php _e('Theme Editor', $domain); ?>
+							</label>
+							<br>
+							<label>
+								<?php echo $form->checkBoolean('scope.plugin-editor'); ?>
+								<?php _e('Plugin Editor', $domain); ?>
+							</label>
+						</fieldset>
+					</td>
+				</tr>
 			</tbody>
 		</table>
 
 		<h3><?php _e('Shortcuts', $domain); ?></h3>
 		<p>
-			<input type="hidden" name="<?php echo $this->name; ?>[override_shortcuts]" value=""><input type="checkbox" id="<?php echo $this->name; ?>_override_shortcuts" name="<?php echo $this->name; ?>[override_shortcuts]" value="1"<?php if ($this->options['override_shortcuts']) echo ' checked="checked"'; ?>>
+			<input type="hidden" name="<?php echo $this->name; ?>[override_shortcuts]" value="">
+			<input type="checkbox" data-wp-emmet-toggle="shortcuts" id="<?php echo $this->name; ?>_override_shortcuts" name="<?php echo $this->name; ?>[override_shortcuts]" value="1"<?php if ($this->options['override_shortcuts']) echo ' checked="checked"'; ?>>
 			<label for="<?php echo $this->name; ?>_override_shortcuts"><?php _e('Override shortcuts', $domain); ?></label>
 		<p>
-		<table class="form-table <?php echo $this->name; ?>_shortcuts"<?php if (!$this->options['override_shortcuts']) echo ' style="display: none"'; ?>>
+		<table data-wp-emmet-toggle-name="shortcuts" class="form-table <?php echo $this->name; ?>_shortcuts"<?php if (!$this->options['override_shortcuts']) echo ' style="display: none"'; ?>>
 			<tbody>
 <?php		foreach ($this->options['shortcuts'] as $label => $keystroke): ?>
 				<tr>
@@ -141,8 +167,6 @@ m10p30e5px
 
 <script>
 jQuery(function($) {
-	var $shortcuts = $('.<?php echo $this->name; ?>_shortcuts');
-
 	$('#<?php echo $form->id('use_codemirror'); ?>').on('click', function() {
 		$('[data-use-editor-type]').attr('data-use-editor-type', this.checked ? 'codemirror' : 'textarea');
 	});
@@ -156,37 +180,10 @@ jQuery(function($) {
 		}
 	});
 
-	$('#<?php echo $this->name; ?>_override_shortcuts').on('click', function() {
-		if ($(this).attr('checked')) {
-			$shortcuts.show();
-		} else {
-			$shortcuts.hide();
-		}
+	$(document).on('click', '[data-wp-emmet-toggle]', function() {
+		var $el = $(this),
+			selector = '[data-wp-emmet-toggle-name="' + $el.attr('data-wp-emmet-toggle') + '"]';
+		$(selector).toggle($el.prop('checked'));
 	});
 });
 </script>
-
-<?php
-// Fake call for gettext
-__('Expand Abbreviation');
-__('Match Pair Outward');
-__('Match Pair Inward');
-__('Wrap with Abbreviation');
-__('Next Edit Point');
-__('Prev Edit Point');
-__('Select Line');
-__('Merge Lines');
-__('Toggle Comment');
-__('Split/Join Tag');
-__('Remove Tag');
-__('Evaluate Math Expression');
-__('Increment number by 1');
-__('Decrement number by 1');
-__('Increment number by 0.1');
-__('Decrement number by 0.1');
-__('Increment number by 10');
-__('Decrement number by 10');
-__('Select Next Item');
-__('Select Previous Item');
-__('Reflect CSS Value');
-?>

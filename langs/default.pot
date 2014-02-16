@@ -1,18 +1,102 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP Emmet\n"
-"POT-Creation-Date: 2013-07-18 23:04+0900\n"
-"PO-Revision-Date: 2013-07-18 23:04+0900\n"
+"POT-Creation-Date: 2014-02-16 18:23+0900\n"
+"PO-Revision-Date: 2014-02-16 18:23+0900\n"
 "Last-Translator: rewish <rewish.org@gmail.com>\n"
 "Language-Team: \n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: langs/fake.php:5
+msgid "Expand Abbreviation"
+msgstr ""
+
+#: langs/fake.php:6
+msgid "Match Pair Outward"
+msgstr ""
+
+#: langs/fake.php:7
+msgid "Match Pair Inward"
+msgstr ""
+
+#: langs/fake.php:8
+msgid "Wrap with Abbreviation"
+msgstr ""
+
+#: langs/fake.php:9
+msgid "Next Edit Point"
+msgstr ""
+
+#: langs/fake.php:10
+msgid "Prev Edit Point"
+msgstr ""
+
+#: langs/fake.php:11
+msgid "Select Line"
+msgstr ""
+
+#: langs/fake.php:12
+msgid "Merge Lines"
+msgstr ""
+
+#: langs/fake.php:13
+msgid "Toggle Comment"
+msgstr ""
+
+#: langs/fake.php:14
+msgid "Split/Join Tag"
+msgstr ""
+
+#: langs/fake.php:15
+msgid "Remove Tag"
+msgstr ""
+
+#: langs/fake.php:16
+msgid "Evaluate Math Expression"
+msgstr ""
+
+#: langs/fake.php:17
+msgid "Increment number by 1"
+msgstr ""
+
+#: langs/fake.php:18
+msgid "Decrement number by 1"
+msgstr ""
+
+#: langs/fake.php:19
+msgid "Increment number by 0.1"
+msgstr ""
+
+#: langs/fake.php:20
+msgid "Decrement number by 0.1"
+msgstr ""
+
+#: langs/fake.php:21
+msgid "Increment number by 10"
+msgstr ""
+
+#: langs/fake.php:22
+msgid "Decrement number by 10"
+msgstr ""
+
+#: langs/fake.php:23
+msgid "Select Next Item"
+msgstr ""
+
+#: langs/fake.php:24
+msgid "Select Previous Item"
+msgstr ""
+
+#: langs/fake.php:25
+msgid "Reflect CSS Value"
+msgstr ""
 
 #: views/options.php:12
 msgid "Editor"
@@ -54,147 +138,79 @@ msgstr ""
 msgid "Theme"
 msgstr ""
 
-#: views/options.php:59
+#: views/options.php:60
 msgid "Tabs and Indents"
 msgstr ""
 
-#: views/options.php:62
+#: views/options.php:63
 msgid "Use tab character"
 msgstr ""
 
-#: views/options.php:67
+#: views/options.php:68
 msgid "Smart indent"
 msgstr ""
 
-#: views/options.php:71
+#: views/options.php:72
 msgid "Tab size"
 msgstr ""
 
-#: views/options.php:76
+#: views/options.php:77
 msgid "Indent unit"
 msgstr ""
 
-#: views/options.php:81
+#: views/options.php:83
 msgid "Appearance"
 msgstr ""
 
-#: views/options.php:84
+#: views/options.php:86
 msgid "Show line numbers"
 msgstr ""
 
-#: views/options.php:89
+#: views/options.php:91
 msgid "Line wrapping"
 msgstr ""
 
-#: views/options.php:93
+#: views/options.php:96
 msgid "Editor Style"
 msgstr ""
 
-#: views/options.php:103
-msgid "Shortcuts"
+#: views/options.php:105
+msgid "Scope"
 msgstr ""
 
-#: views/options.php:106
-msgid "Override shortcuts"
+#: views/options.php:110
+msgid "Post Editor"
+msgstr ""
+
+#: views/options.php:115
+msgid "Theme Editor"
 msgstr ""
 
 #: views/options.php:120
+msgid "Plugin Editor"
+msgstr ""
+
+#: views/options.php:128
+msgid "Shortcuts"
+msgstr ""
+
+#: views/options.php:132
+msgid "Override shortcuts"
+msgstr ""
+
+#: views/options.php:146
 msgid "Save option"
 msgstr ""
 
-#: views/options.php:124
+#: views/options.php:150
 msgid "Bug reports"
 msgstr ""
 
-#: views/options.php:125
+#: views/options.php:151
 #, php-format
 msgid "Please create an issue on %s."
 msgstr ""
 
-#: views/options.php:127
+#: views/options.php:153
 msgid "Test the Emmet"
-msgstr ""
-
-#: views/options.php:171
-msgid "Expand Abbreviation"
-msgstr ""
-
-#: views/options.php:172
-msgid "Match Pair Outward"
-msgstr ""
-
-#: views/options.php:173
-msgid "Match Pair Inward"
-msgstr ""
-
-#: views/options.php:174
-msgid "Wrap with Abbreviation"
-msgstr ""
-
-#: views/options.php:175
-msgid "Next Edit Point"
-msgstr ""
-
-#: views/options.php:176
-msgid "Prev Edit Point"
-msgstr ""
-
-#: views/options.php:177
-msgid "Select Line"
-msgstr ""
-
-#: views/options.php:178
-msgid "Merge Lines"
-msgstr ""
-
-#: views/options.php:179
-msgid "Toggle Comment"
-msgstr ""
-
-#: views/options.php:180
-msgid "Split/Join Tag"
-msgstr ""
-
-#: views/options.php:181
-msgid "Remove Tag"
-msgstr ""
-
-#: views/options.php:182
-msgid "Evaluate Math Expression"
-msgstr ""
-
-#: views/options.php:183
-msgid "Increment number by 1"
-msgstr ""
-
-#: views/options.php:184
-msgid "Decrement number by 1"
-msgstr ""
-
-#: views/options.php:185
-msgid "Increment number by 0.1"
-msgstr ""
-
-#: views/options.php:186
-msgid "Decrement number by 0.1"
-msgstr ""
-
-#: views/options.php:187
-msgid "Increment number by 10"
-msgstr ""
-
-#: views/options.php:188
-msgid "Decrement number by 10"
-msgstr ""
-
-#: views/options.php:189
-msgid "Select Next Item"
-msgstr ""
-
-#: views/options.php:190
-msgid "Select Previous Item"
-msgstr ""
-
-#: views/options.php:191
-msgid "Reflect CSS Value"
 msgstr ""

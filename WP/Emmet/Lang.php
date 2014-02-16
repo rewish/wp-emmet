@@ -11,7 +11,7 @@ class WP_Emmet_Lang {
 	}
 
 	/**
-	 * Load textdomain
+	 * Loads a MO file into the domain $domain
 	 */
 	public function load() {
 		load_textdomain(WP_EMMET_DOMAIN, $this->getPath());

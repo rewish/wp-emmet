@@ -162,6 +162,29 @@ class WP_Emmet_Options {
 	}
 
 	/**
+	 * Key exists
+	 *
+	 * @param string $key
+	 * @return boolean
+	 */
+	public function exists($key) {
+		$keys = explode('.', $key);
+		$options = $this->options;
+
+		while (count($keys) > 0) {
+			$key = array_shift($keys);
+
+			if (!array_key_exists($key, $options)) {
+				return false;
+			}
+
+			$options = $options[$key];
+		}
+
+		return true;
+	}
+
+	/**
 	 * Option to JSON
 	 *
 	 * @param string $key

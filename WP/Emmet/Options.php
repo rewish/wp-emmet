@@ -70,7 +70,8 @@ class WP_Emmet_Options {
 			'scope' => array(
 				'post' => '1',
 				'theme-editor' => '1',
-				'plugin-editor' => '1'
+				'plugin-editor' => '1',
+				'others' => '1'
 			),
 
 			'override_shortcuts' => '',
@@ -159,6 +160,29 @@ class WP_Emmet_Options {
 		} while (!empty($keys));
 
 		return $option;
+	}
+
+	/**
+	 * Key exists
+	 *
+	 * @param string $key
+	 * @return boolean
+	 */
+	public function exists($key) {
+		$keys = explode('.', $key);
+		$options = $this->options;
+
+		while (count($keys) > 0) {
+			$key = array_shift($keys);
+
+			if (!array_key_exists($key, $options)) {
+				return false;
+			}
+
+			$options = $options[$key];
+		}
+
+		return true;
 	}
 
 	/**

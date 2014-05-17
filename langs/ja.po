@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP Emmet\n"
-"POT-Creation-Date: 2014-02-16 18:26+0900\n"
-"PO-Revision-Date: 2014-02-16 18:26+0900\n"
+"POT-Creation-Date: 2014-05-18 00:31+0900\n"
+"PO-Revision-Date: 2014-05-18 00:31+0900\n"
 "Last-Translator: rewish <rewish.org@gmail.com>\n"
 "Language-Team: \n"
 "Language: Japanese\n"
@@ -190,27 +190,31 @@ msgstr "テーマエディター"
 msgid "Plugin Editor"
 msgstr "プラグインエディター"
 
-#: views/options.php:128
+#: views/options.php:125
+msgid "Others"
+msgstr "その他"
+
+#: views/options.php:133
 msgid "Shortcuts"
 msgstr "ショートカット"
 
-#: views/options.php:132
+#: views/options.php:137
 msgid "Override shortcuts"
 msgstr "ショートカットを上書き"
 
-#: views/options.php:146
+#: views/options.php:151
 msgid "Save option"
 msgstr "オプションを保存"
 
-#: views/options.php:150
+#: views/options.php:155
 msgid "Bug reports"
 msgstr "バグの報告"
 
-#: views/options.php:151
+#: views/options.php:156
 #, php-format
 msgid "Please create an issue on %s."
 msgstr "%sから報告してください。"
 
-#: views/options.php:153
+#: views/options.php:158
 msgid "Test the Emmet"
 msgstr "Emmetをテスト"

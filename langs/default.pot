@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP Emmet\n"
-"POT-Creation-Date: 2014-02-16 18:23+0900\n"
-"PO-Revision-Date: 2014-02-16 18:23+0900\n"
+"POT-Creation-Date: 2014-05-18 00:32+0900\n"
+"PO-Revision-Date: 2014-05-18 00:32+0900\n"
 "Last-Translator: rewish <rewish.org@gmail.com>\n"
 "Language-Team: \n"
 "Language: English\n"
@@ -190,27 +190,31 @@ msgstr ""
 msgid "Plugin Editor"
 msgstr ""
 
-#: views/options.php:128
+#: views/options.php:125
+msgid "Others"
+msgstr ""
+
+#: views/options.php:133
 msgid "Shortcuts"
 msgstr ""
 
-#: views/options.php:132
+#: views/options.php:137
 msgid "Override shortcuts"
 msgstr ""
 
-#: views/options.php:146
+#: views/options.php:151
 msgid "Save option"
 msgstr ""
 
-#: views/options.php:150
+#: views/options.php:155
 msgid "Bug reports"
 msgstr ""
 
-#: views/options.php:151
+#: views/options.php:156
 #, php-format
 msgid "Please create an issue on %s."
 msgstr ""
 
-#: views/options.php:153
+#: views/options.php:158
 msgid "Test the Emmet"
 msgstr ""

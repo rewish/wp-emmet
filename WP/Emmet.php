@@ -105,8 +105,17 @@ class WP_Emmet {
 	 */
 	public function isInScope() {
 		$screen = get_current_screen();
-		return $screen->base === 'settings_page_' . WP_EMMET_DOMAIN
-			|| $this->Options->get("scope.{$screen->base}") === '1';
+		$type = "scope.{$screen->base}";
+
+		if ($screen->base === 'settings_page_' . WP_EMMET_DOMAIN) {
+			return true;
+		}
+
+		if (!$this->Options->exists($type)) {
+			$type = 'scope.others';
+		}
+
+		return $this->Options->get($type) === '1';
 	}
 
 	/**

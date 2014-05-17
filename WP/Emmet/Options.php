@@ -70,7 +70,8 @@ class WP_Emmet_Options {
 			'scope' => array(
 				'post' => '1',
 				'theme-editor' => '1',
-				'plugin-editor' => '1'
+				'plugin-editor' => '1',
+				'others' => '1'
 			),
 
 			'override_shortcuts' => '',

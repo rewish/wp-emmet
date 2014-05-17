@@ -119,6 +119,11 @@
 								<?php echo $form->checkBoolean('scope.plugin-editor'); ?>
 								<?php _e('Plugin Editor', $domain); ?>
 							</label>
+							<br>
+							<label>
+								<?php echo $form->checkBoolean('scope.others'); ?>
+								<?php _e('Others', $domain); ?>
+							</label>
 						</fieldset>
 					</td>
 				</tr>

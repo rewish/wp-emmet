@@ -89,7 +89,7 @@ class WP_Emmet {
 	 * Register hooks
 	 */
 	public function registerHooks() {
-		if (!$this->isInScope()) {
+		if (!$this->isInScope()||apply_filters('wp_emmet_disable_flag', false)) {
 			return;
 		}
 

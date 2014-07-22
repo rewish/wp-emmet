@@ -27,6 +27,9 @@ e.g.
 
 == Changelog ==
 
+= 0.2.6 =
+* Add filter (`wp_emmet_is_in_scope`)
+
 = 0.2.5 =
 * Add others scope
 

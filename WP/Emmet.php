@@ -106,16 +106,19 @@ class WP_Emmet {
 	public function isInScope() {
 		$screen = get_current_screen();
 		$type = "scope.{$screen->base}";
+		$isInScope = true;
 
 		if ($screen->base === 'settings_page_' . WP_EMMET_DOMAIN) {
-			return true;
+			return apply_filters('wp_emmet_is_in_scope', $isInScope);
 		}
 
 		if (!$this->Options->exists($type)) {
 			$type = 'scope.others';
 		}
 
-		return $this->Options->get($type) === '1';
+		$isInScope = $this->Options->get($type) === '1';
+
+		return apply_filters('wp_emmet_is_in_scope', $isInScope);
 	}
 
 	/**

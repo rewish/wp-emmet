@@ -27,6 +27,10 @@ e.g.
 
 == Changelog ==
 
+= 0.3 =
+* Fixes for WordPress 4.0
+* Raise the requires version to 4.0
+
 = 0.2.6 =
 * Add filter (`wp_emmet_is_in_scope`)
 

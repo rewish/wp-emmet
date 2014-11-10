@@ -137,11 +137,15 @@ class WP_Emmet {
 	 */
 	public function enqueueScripts() {
 		$type = $this->editorType();
+		$deps = array('underscore');
+
 		if ($this->isCodeMirrorMode()) {
 			$this->CodeMirror->enqueueAllScripts();
+			$deps[] = $type;
 		}
-		wp_enqueue_script('wp_wmmet', self::assetURL("js/wp_emmet.js"));
-		wp_enqueue_script('emmet', self::assetURL("js/{$type}/emmet.js"), array('underscore'), false, true);
+
+		wp_enqueue_script('emmet', self::assetURL("js/{$type}/emmet.js"), $deps, false, true);
+		wp_enqueue_script('wp_wmmet', self::assetURL("js/wp_emmet.js"), array('emmet','editor'));
 	}
 
 	/**

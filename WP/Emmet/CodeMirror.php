@@ -35,6 +35,7 @@ class WP_Emmet_CodeMirror {
 		$this->registerStyle('codemirror');
 		$this->_registerThemes();
 		$this->registerScript('codemirror');
+		$this->registerScript('adapter', 'adapter', array('deps' => 'codemirror'));
 		$this->_registerModes();
 	}
 
@@ -75,7 +76,15 @@ class WP_Emmet_CodeMirror {
 	 * @param string $mode
 	 */
 	public function enqueueScript($mode = null) {
-		wp_enqueue_script($mode ? "{$this->domain}-{$mode}" : $this->domain);
+		$handle = $this->domain;
+		$deps = array();
+
+		if ($mode) {
+			$deps[] = $this->domain;
+			$handle.= '-' . $mode;
+		}
+
+		wp_enqueue_script($handle, $deps);
 	}
 
 	/**
@@ -83,6 +92,7 @@ class WP_Emmet_CodeMirror {
 	 */
 	public function enqueueAllScripts() {
 		$this->enqueueScript();
+		$this->enqueueScript('adapter');
 		array_walk($this->modes, array($this, 'enqueueScript'));
 	}
 

@@ -90,10 +90,16 @@
   if (wp.media && wp.media.editor) {
     wp.media.editor.insert_without_wp_emmet = wp.media.editor.insert;
     wp.media.editor.insert = function(h) {
-      var cursor,
+      var cursor, tEditor,
           editor = $('#' + wpActiveEditor).codeMirrorEditor();
 
       if (!editor) {
+        return this.insert_without_wp_emmet(h);
+      }
+
+      tEditor = window.tinymce && tinymce.get(wpActiveEditor);
+
+      if (tEditor && !tEditor.hidden) {
         return this.insert_without_wp_emmet(h);
       }
 

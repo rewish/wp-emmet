@@ -156,6 +156,7 @@
 
       styles = $textarea.position();
       styles.position = 'absolute';
+      styles.width = '100%';
       $wrapper.css(styles);
 
       update();

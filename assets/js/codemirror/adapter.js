@@ -135,7 +135,7 @@
   if (wp.editor) {
     CodeMirror.fromTextArea_without_wp_emmet = CodeMirror.fromTextArea;
     CodeMirror.fromTextArea = function(textarea, options) {
-      var $wrapper, $textarea, styles,
+      var $wrapper, $textarea, styles, lastKeyCode,
           cm = this.fromTextArea_without_wp_emmet(textarea, options);
 
       if (textarea.id !== 'content') {
@@ -162,6 +162,20 @@
       update();
       wp_emmet.initialResize(update);
       cm.on('update', update);
+
+      cm.on('keyup', function(cm, event) {
+        var keyCode = event.keyCode || event.charCode;
+
+        if (keyCode === lastKeyCode) {
+          return;
+        }
+
+        if (13 === keyCode || 8 === lastKeyCode || 46 === lastKeyCode) {
+          $(document).triggerHandler('wpcountwords', [cm.getValue()]);
+        }
+
+        lastKeyCode = keyCode;
+      });
 
       return cm;
     };

@@ -71,25 +71,31 @@ var wp_emmet = (function($) {
   };
 
   function adjust() {
-    var editor = $('#content').codeMirrorEditor(),
-        $top = wp_emmet.$top || $('#ed_toolbar');
+    var styles,
+        $textarea = $('#content'),
+        $wrapper = $textarea.closest('.wp-editor-wrap'),
+        editor = $textarea.codeMirrorEditor();
 
-    if (editor) {
-      $(editor.display.wrapper).css('marginTop', $top.innerHeight()|0)
+    if (!editor || !$wrapper.hasClass('html-active')) {
+      return;
+    }
+
+    $textarea.show();
+    styles = $textarea.position();
+    styles.marginTop = $textarea.css('marginTop');
+    $(editor.display.wrapper).css(styles);
+    $.each(editor._handlers.update, function() { this(); });
+  }
+
+  // ref: initialResize() in wp-admin/js/editor-expand.js
+  function initialResize(callback) {
+    for (var i = 1; i < 6; i++) {
+      setTimeout(callback, 500 * i);
     }
   }
 
-  var scrollTimerID;
-
-  $(window).on('scroll resize', function() {
-    adjust();
-    clearTimeout(scrollTimerID);
-    scrollTimerID = setTimeout(adjust, 100);
-  });
-
-  $(document).on('wp-collapse-menu postboxes-columnchange editor-classchange postbox-toggled', adjust);
-
   return {
-    adjust: adjust
-  };
+    adjust: adjust,
+    initialResize: initialResize
+  }
 }(jQuery));

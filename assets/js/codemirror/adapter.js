@@ -90,10 +90,16 @@
   if (wp.media && wp.media.editor) {
     wp.media.editor.insert_without_wp_emmet = wp.media.editor.insert;
     wp.media.editor.insert = function(h) {
-      var cursor,
+      var cursor, tEditor,
           editor = $('#' + wpActiveEditor).codeMirrorEditor();
 
       if (!editor) {
+        return this.insert_without_wp_emmet(h);
+      }
+
+      tEditor = window.tinymce && tinymce.get(wpActiveEditor);
+
+      if (tEditor && !tEditor.hidden) {
         return this.insert_without_wp_emmet(h);
       }
 
@@ -121,14 +127,72 @@
       this.save_without_wp_emmet();
     };
 
-    wp.editor.fullscreen.pubsub.subscribe('showing', function() {
-      wp_emmet.$top = $([]);
+    wp.editor.fullscreen.pubsub.subscribe('showing', wp_emmet.adjust);
+    wp.editor.fullscreen.pubsub.subscribe('hiding', wp_emmet.adjust);
+  }
+
+  // Resizable TextEditor
+  if (wp.editor) {
+    CodeMirror.fromTextArea_without_wp_emmet = CodeMirror.fromTextArea;
+    CodeMirror.fromTextArea = function(textarea, options) {
+      var $wrapper, $textarea, styles, lastKeyCode,
+          cm = this.fromTextArea_without_wp_emmet(textarea, options);
+
+      if (textarea.id !== 'content') {
+        return cm;
+      }
+
+      $wrapper = $(cm.display.wrapper);
+      $textarea = $(textarea).show();
+
+      function update() {
+        $textarea.height($wrapper.height());
+      }
+
+      styles = $textarea.position();
+      styles.position = 'absolute';
+      styles.width = '100%';
+      $wrapper.css(styles);
+
+      update();
+      wp_emmet.initialResize(update);
+      cm.on('update', update);
+
+      cm.on('keyup', function(cm, event) {
+        var keyCode = event.keyCode || event.charCode;
+
+        if (keyCode === lastKeyCode) {
+          return;
+        }
+
+        if (13 === keyCode || 8 === lastKeyCode || 46 === lastKeyCode) {
+          $(document).triggerHandler('wpcountwords', [cm.getValue()]);
+        }
+
+        lastKeyCode = keyCode;
+      });
+
+      return cm;
+    };
+  }
+
+  // On Document Ready
+  $(function($) {
+    var scrollTimerID;
+
+    $(window).on('scroll resize', function() {
       wp_emmet.adjust();
+      clearTimeout(scrollTimerID);
+      scrollTimerID = setTimeout(wp_emmet.adjust, 100);
     });
 
-    wp.editor.fullscreen.pubsub.subscribe('hiding', function() {
-      wp_emmet.$top = null;
+    $(document).on('wp-collapse-menu postboxes-columnchange editor-classchange postbox-toggled', wp_emmet.adjust);
+
+    $(document).on('change', '#editor-expand-toggle', function() {
       wp_emmet.adjust();
+      $(window).triggerHandler('scroll');
     });
-  }
+
+    wp_emmet.initialResize(wp_emmet.adjust);
+  });
 }(jQuery);

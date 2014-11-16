@@ -2,6 +2,10 @@
 .CodeMirror {
 <?php echo $this->Options->get('codemirror_style') . PHP_EOL; ?>
 }
+
+#ed_toolbar {
+	z-index: 100;
+}
 </style>
 
 <script>

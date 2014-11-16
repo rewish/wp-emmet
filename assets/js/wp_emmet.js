@@ -70,26 +70,24 @@ var wp_emmet = (function($) {
     });
   };
 
-  function adjust() {
-    var editor = $('#content').codeMirrorEditor(),
-        $top = wp_emmet.$top || $('#ed_toolbar');
-
+  function initialAdjust() {
+    var editor = $('#content').codeMirrorEditor();
     if (editor) {
-      $(editor.display.wrapper).css('marginTop', $top.innerHeight()|0)
+      $(editor.display.wrapper).css('marginTop', $('#ed_toolbar').outerHeight()|0);
     }
   }
 
-  var scrollTimerID;
+  function adjust() {
+    var $textarea = $('#content'),
+        editor = $textarea.codeMirrorEditor();
 
-  $(window).on('scroll resize', function() {
-    adjust();
-    clearTimeout(scrollTimerID);
-    scrollTimerID = setTimeout(adjust, 100);
-  });
-
-  $(document).on('wp-collapse-menu postboxes-columnchange editor-classchange postbox-toggled', adjust);
+    if (editor) {
+      $(editor.display.wrapper).css('marginTop', $textarea.css('marginTop'));
+    }
+  }
 
   return {
+    initialAdjust: initialAdjust,
     adjust: adjust
   };
 }(jQuery));

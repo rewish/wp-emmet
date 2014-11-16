@@ -30,7 +30,7 @@ jQuery(function($) {
 
 	setTimeout(function() {
 		$('textarea:not(#content-textarea-clone)').emmet(options, mimeTypes);
-		wp_emmet.adjust();
+		wp_emmet.initialAdjust();
 	}, 1);
 });
 </script>

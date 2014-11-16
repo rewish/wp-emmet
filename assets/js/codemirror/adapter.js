@@ -127,14 +127,25 @@
       this.save_without_wp_emmet();
     };
 
-    wp.editor.fullscreen.pubsub.subscribe('showing', function() {
-      wp_emmet.$top = $([]);
-      wp_emmet.adjust();
-    });
-
-    wp.editor.fullscreen.pubsub.subscribe('hiding', function() {
-      wp_emmet.$top = null;
-      wp_emmet.adjust();
-    });
+    wp.editor.fullscreen.pubsub.subscribe('showing', wp_emmet.adjust);
+    wp.editor.fullscreen.pubsub.subscribe('hiding', wp_emmet.adjust);
   }
 }(jQuery);
+
+jQuery(function($) {
+  var scrollTimerID;
+
+  $(window).on('scroll resize', function() {
+    wp_emmet.adjust();
+    clearTimeout(scrollTimerID);
+    scrollTimerID = setTimeout(wp_emmet.adjust, 100);
+  });
+
+  $(document).on('wp-collapse-menu postboxes-columnchange editor-classchange postbox-toggled', wp_emmet.adjust);
+
+  $(document).on('change', '#editor-expand-toggle', function() {
+    var editor = $('#content').codeMirrorEditor();
+    if (editor) { $(editor.getTextArea()).hide(); }
+    wp_emmet.adjust();
+  });
+});

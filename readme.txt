@@ -27,6 +27,11 @@ e.g.
 
 == Changelog ==
 
+= 0.3.1 =
+* Supports text-count
+* Fix a bug of media insertion in the Visual Editor
+* Fix textarea height and toolbar position
+
 = 0.3 =
 * Fixes for WordPress 4.0
 * Raise the requires version to 4.0

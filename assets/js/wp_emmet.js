@@ -71,12 +71,20 @@ var wp_emmet = (function($) {
   };
 
   function adjust() {
-    var $textarea = $('#content'),
+    var styles,
+        $textarea = $('#content'),
+        $wrapper = $textarea.closest('.wp-editor-wrap'),
         editor = $textarea.codeMirrorEditor();
 
-    if (editor) {
-      $(editor.display.wrapper).css('marginTop', $textarea.css('marginTop'));
+    if (!editor || !$wrapper.hasClass('html-active')) {
+      return;
     }
+
+    $textarea.show();
+    styles = $textarea.position();
+    styles.marginTop = $textarea.css('marginTop');
+    $(editor.display.wrapper).css(styles);
+    $.each(editor._handlers.update, function() { this(); });
   }
 
   // ref: initialResize() in wp-admin/js/editor-expand.js

@@ -7,6 +7,12 @@
 #ed_toolbar {
 	z-index: 102;
 }
+
+#content {
+	position: relative;
+	z-index: 100;
+	padding: 1px;
+}
 </style>
 
 <script>

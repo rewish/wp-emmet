@@ -143,12 +143,7 @@
       }
 
       $wrapper = $(cm.display.wrapper);
-      $textarea = $(textarea).css({
-        display: '',
-        position: 'relative',
-        zIndex: $wrapper.css('zIndex')|0 - 1,
-        padding: '1px'
-      });
+      $textarea = $(textarea).show();
 
       function update() {
         $textarea.height($wrapper.height());
@@ -192,7 +187,11 @@
     });
 
     $(document).on('wp-collapse-menu postboxes-columnchange editor-classchange postbox-toggled', wp_emmet.adjust);
-    $(document).on('change', '#editor-expand-toggle', wp_emmet.adjust);
+
+    $(document).on('change', '#editor-expand-toggle', function() {
+      wp_emmet.adjust();
+      $(window).triggerHandler('scroll');
+    });
 
     wp_emmet.initialResize(wp_emmet.adjust);
   });

@@ -70,13 +70,6 @@ var wp_emmet = (function($) {
     });
   };
 
-  function initialAdjust() {
-    var editor = $('#content').codeMirrorEditor();
-    if (editor) {
-      $(editor.display.wrapper).css('marginTop', $('#ed_toolbar').outerHeight()|0);
-    }
-  }
-
   function adjust() {
     var $textarea = $('#content'),
         editor = $textarea.codeMirrorEditor();
@@ -86,8 +79,15 @@ var wp_emmet = (function($) {
     }
   }
 
+  // ref: initialResize() in wp-admin/js/editor-expand.js
+  function initialResize(callback) {
+    for (var i = 1; i < 6; i++) {
+      setTimeout(callback, 500 * i);
+    }
+  }
+
   return {
-    initialAdjust: initialAdjust,
-    adjust: adjust
-  };
+    adjust: adjust,
+    initialResize: initialResize
+  }
 }(jQuery));

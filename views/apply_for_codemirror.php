@@ -1,10 +1,11 @@
 <style>
 .CodeMirror {
 <?php echo $this->Options->get('codemirror_style') . PHP_EOL; ?>
+	z-index: 101;
 }
 
 #ed_toolbar {
-	z-index: 100;
+	z-index: 102;
 }
 </style>
 
@@ -34,7 +35,6 @@ jQuery(function($) {
 
 	setTimeout(function() {
 		$('textarea:not(#content-textarea-clone)').emmet(options, mimeTypes);
-		wp_emmet.initialAdjust();
 	}, 1);
 });
 </script>

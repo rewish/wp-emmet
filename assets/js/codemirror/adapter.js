@@ -130,22 +130,55 @@
     wp.editor.fullscreen.pubsub.subscribe('showing', wp_emmet.adjust);
     wp.editor.fullscreen.pubsub.subscribe('hiding', wp_emmet.adjust);
   }
+
+  // Resizable TextEditor
+  if (wp.editor) {
+    CodeMirror.fromTextArea_without_wp_emmet = CodeMirror.fromTextArea;
+    CodeMirror.fromTextArea = function(textarea, options) {
+      var $wrapper, $textarea, styles,
+          cm = this.fromTextArea_without_wp_emmet(textarea, options);
+
+      if (textarea.id !== 'content') {
+        return cm;
+      }
+
+      $wrapper = $(cm.display.wrapper);
+      $textarea = $(textarea).css({
+        display: '',
+        position: 'relative',
+        zIndex: $wrapper.css('zIndex')|0 - 1,
+        padding: '1px'
+      });
+
+      function update() {
+        $textarea.height($wrapper.height());
+      }
+
+      styles = $textarea.position();
+      styles.position = 'absolute';
+      $wrapper.css(styles);
+
+      update();
+      wp_emmet.initialResize(update);
+      cm.on('update', update);
+
+      return cm;
+    };
+  }
+
+  // On Document Ready
+  $(function($) {
+    var scrollTimerID;
+
+    $(window).on('scroll resize', function() {
+      wp_emmet.adjust();
+      clearTimeout(scrollTimerID);
+      scrollTimerID = setTimeout(wp_emmet.adjust, 100);
+    });
+
+    $(document).on('wp-collapse-menu postboxes-columnchange editor-classchange postbox-toggled', wp_emmet.adjust);
+    $(document).on('change', '#editor-expand-toggle', wp_emmet.adjust);
+
+    wp_emmet.initialResize(wp_emmet.adjust);
+  });
 }(jQuery);
-
-jQuery(function($) {
-  var scrollTimerID;
-
-  $(window).on('scroll resize', function() {
-    wp_emmet.adjust();
-    clearTimeout(scrollTimerID);
-    scrollTimerID = setTimeout(wp_emmet.adjust, 100);
-  });
-
-  $(document).on('wp-collapse-menu postboxes-columnchange editor-classchange postbox-toggled', wp_emmet.adjust);
-
-  $(document).on('change', '#editor-expand-toggle', function() {
-    var editor = $('#content').codeMirrorEditor();
-    if (editor) { $(editor.getTextArea()).hide(); }
-    wp_emmet.adjust();
-  });
-});

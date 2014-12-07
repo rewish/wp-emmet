@@ -1,4 +1,4 @@
-!function($) {
+jQuery(function($) {
   'use strict';
 
   // Switch editor
@@ -176,23 +176,20 @@
     };
   }
 
-  // On Document Ready
-  $(function($) {
-    var scrollTimerID;
+  var scrollTimerID;
 
-    $(window).on('scroll resize', function() {
-      wp_emmet.adjust();
-      clearTimeout(scrollTimerID);
-      scrollTimerID = setTimeout(wp_emmet.adjust, 100);
-    });
-
-    $(document).on('wp-collapse-menu postboxes-columnchange editor-classchange postbox-toggled', wp_emmet.adjust);
-
-    $(document).on('change', '#editor-expand-toggle', function() {
-      wp_emmet.adjust();
-      $(window).triggerHandler('scroll');
-    });
-
-    wp_emmet.initialResize(wp_emmet.adjust);
+  $(window).on('scroll resize', function() {
+    wp_emmet.adjust();
+    clearTimeout(scrollTimerID);
+    scrollTimerID = setTimeout(wp_emmet.adjust, 100);
   });
-}(jQuery);
+
+  $(document).on('wp-collapse-menu postboxes-columnchange editor-classchange postbox-toggled', wp_emmet.adjust);
+
+  $(document).on('change', '#editor-expand-toggle', function() {
+    wp_emmet.adjust();
+    $(window).triggerHandler('scroll');
+  });
+
+  wp_emmet.initialResize(wp_emmet.adjust);
+});

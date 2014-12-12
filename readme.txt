@@ -2,7 +2,7 @@
 Contributors: rewish
 Tags: emmet, zen-coding, editor, post, plugin, coding
 Requires at least: 4.0
-Tested up to: 4.0
+Tested up to: 4.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -26,6 +26,9 @@ e.g.
 3. The Emmet is available in admin page
 
 == Changelog ==
+
+= 0.3.2 =
+* Run the adapter in the jQuery.ready()
 
 = 0.3.1 =
 * Supports text-count

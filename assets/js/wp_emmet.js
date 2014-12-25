@@ -84,7 +84,10 @@ var wp_emmet = (function($) {
     styles = $textarea.position();
     styles.marginTop = $textarea.css('marginTop');
     $(editor.display.wrapper).css(styles);
-    $.each(editor._handlers.update, function() { this(); });
+
+    if (editor._handlers) {
+      $.each(editor._handlers.update, function() { this(); });
+    }
   }
 
   // ref: initialResize() in wp-admin/js/editor-expand.js

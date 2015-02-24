@@ -27,6 +27,12 @@ e.g.
 
 == Changelog ==
 
+= 0.3.4 =
+* Fix a broken editor in the edit comment page
+
+= 0.3.3 =
+* Bug fix for iOS
+
 = 0.3.2 =
 * Run the adapter in the jQuery.ready()
 

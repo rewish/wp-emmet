@@ -132,7 +132,7 @@ jQuery(function($) {
   }
 
   // Resizable TextEditor
-  if (window.wp && wp.autosave) {
+  if ($('.quicktags-toolbar').length) {
     CodeMirror.fromTextArea_without_wp_emmet = CodeMirror.fromTextArea;
     CodeMirror.fromTextArea = function(textarea, options) {
       var $wrapper, $textarea, styles, lastKeyCode,
